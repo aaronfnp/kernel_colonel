@@ -14,6 +14,18 @@ app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(require('./config/checkToken'));
 
+// Cross-Origin Resource Sharing (CORS) Configuration
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");  // Allows access from any domain
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");  // Allows these methods
+    return res.status(200).json({});
+  }
+  next();
+}); 
+
+
 const port = process.env.PORT || 3001;
 
 // Put API routes here, before the "catch all" route
