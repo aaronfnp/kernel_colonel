@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const cornSchema = require('./corn');
 const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 6;
@@ -16,7 +17,8 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  score: [cornSchema.totalCornVal]
 }, {
   timestamps: true,
   toJSON: {
