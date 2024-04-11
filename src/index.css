@@ -12,6 +12,7 @@
 
 *, *:before, *:after {
   box-sizing: border-box;
+  
 }
 
 body {
@@ -156,10 +157,16 @@ button[type="submit"] {
   width: 45%;
   margin: 5%;
   background-color: #F67F00;
+  border-radius: 10%;
 }
 
 .storeContainer {
   width: 45%;
   margin: 5%;
   background-color: white;
+  border-radius: 10%;
+}
+
+.cornStats {
+  padding: 10px;
 }
