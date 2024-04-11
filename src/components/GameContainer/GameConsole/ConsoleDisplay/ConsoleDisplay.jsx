@@ -3,6 +3,7 @@ import DisplayLeaderBoard from './Displays/DisplayLeaderBoard'
 import DisplaySettings from './Displays/DisplaySettings'
 import DisplayStats from './Displays/DisplayStats'
 import { useState } from 'react'
+import  './ConsoleDisplay.css'
 
 function ConsoleDisplay({displayState}) {
 
@@ -19,9 +20,13 @@ function ConsoleDisplay({displayState}) {
     return (
         <div>
             <h3>Console Display:</h3>
+            <div class="console-display">
             {displayComponent}
+            </div>
         </div>
     );
 }
+
+
 
 export default ConsoleDisplay;
