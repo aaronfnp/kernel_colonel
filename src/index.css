@@ -151,3 +151,27 @@ button[type="submit"] {
   grid-column: span 2;
   margin: 1vmin 0 0;
 }
+
+.gameContainer {
+  width: 45%;
+  margin: 5%;
+  background-color: #F67F00;
+}
+
+.storeContainer {
+  width: 45%;
+  margin: 5%;
+  background-color: white;
+}
+
+.gameContainer {
+  width: 45%;
+  margin: 5%;
+  background-color: #F67F00;
+}
+
+.storeContainer {
+  width: 45%;
+  margin: 5%;
+  background-color: white;
+}
