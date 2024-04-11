@@ -18,7 +18,7 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  score: [cornSchema.totalCornVal]
+  score: { type: Number, ref: 'Corn.totalCornVal', default: 0 }
 }, {
   timestamps: true,
   toJSON: {
