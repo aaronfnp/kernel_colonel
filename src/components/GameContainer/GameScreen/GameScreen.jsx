@@ -4,7 +4,7 @@ import GameInterface from './GameInterface/GameInterface'
 function GameScreen({cornVal, setCornVal, cornValMod_Passive, cornValMod_Active}) {
   return (
     <div>
-      <h2>GameScreen</h2>
+      <h2>Kernel Count</h2>
       <GameInterface 
       cornVal={cornVal} 
       setCornVal={setCornVal} 
