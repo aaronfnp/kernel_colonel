@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const cornSchema = require('./corn');
 const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 6;
@@ -18,7 +17,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  score: { type: Number, ref: 'Corn.totalCornVal', default: 0 }
+  corn: {type: Number, ref: 'Corn.cornVal', default: 0},
+  score: { type: Number, ref: 'Corn.totalCornVal', default: 0 },
+  popcornMachineLevel: { type: Number, default: 0 } //I believe each new upgrade model will get its own level state
+
 }, {
   timestamps: true,
   toJSON: {
