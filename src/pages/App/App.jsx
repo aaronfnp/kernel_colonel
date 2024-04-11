@@ -12,13 +12,10 @@ export default function App() {
 
   return (
     <main className="App">
-      <NavBar user={user} setUser={setUser} />
       { user ?
           <>
+          <NavBar user={user} setUser={setUser} />
           <GamePage />
-            <Routes>
-              
-            </Routes>
           </>
           :
           <AuthPage setUser={setUser} />
