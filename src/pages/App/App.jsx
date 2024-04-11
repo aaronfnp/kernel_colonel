@@ -4,6 +4,7 @@ import { getUser } from '../../utilities/users-service';
 
 import './App.css';
 import AuthPage from '../AuthPage/AuthPage';
+import GamePage from '../GamePage/GamePage'
 import NavBar from '../../components/NavBar/NavBar';
 
 export default function App() {
@@ -11,9 +12,10 @@ export default function App() {
 
   return (
     <main className="App">
+      <NavBar user={user} setUser={setUser} />
       { user ?
           <>
-            <NavBar user={user} setUser={setUser} />
+          <GamePage />
             <Routes>
               
             </Routes>
