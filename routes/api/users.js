@@ -5,9 +5,12 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn')
 
 // All paths start with '/api/users'
 router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
+router.get('/loadLB', usersCtrl.loadLB);
 
 // POST /api/users (create a user - sign up)
 router.post('/', usersCtrl.create);
 router.post('/login', usersCtrl.login);
+router.put('/:userId/update-score', usersCtrl.updateScore);
 
 module.exports = router;
+

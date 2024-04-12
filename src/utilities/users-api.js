@@ -13,3 +13,11 @@ export function login(credentials) {
 export function checkToken() {
   return sendRequest(`${BASE_URL}/check-token`);
 }
+
+export function updateScore(userId, newScore) {
+  return sendRequest(`${BASE_URL}/${userId}/update-score`, 'PUT', { score: newScore });
+}
+
+export function loadLB() {
+  return sendRequest(`${BASE_URL}/loadLB`);
+}
