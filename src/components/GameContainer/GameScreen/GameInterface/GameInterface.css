@@ -1,0 +1,46 @@
+.custom-button {
+    background-image: url('KCnoBG.png');
+    background-size: cover; /* Adjust the image size */
+    background-repeat: no-repeat; /* Ensure the image doesn't repeat */
+    background-position: center;
+    width: 450px; /* Set width */
+    height: 190px; /* Set height */
+    border: none; /* Remove default button border */
+    /* Add any other styles you need */
+  }
+  
+  /* Style for popcorn container */
+.popcorn-container {
+  position: relative;
+  width: 450px; /* Set width to match button width */
+  height: 190px; /* Set height to match button height */
+}
+
+  /* Style for popcorn */
+.popcorn {
+    position: fixed;
+    bottom: -100px; /* Start the popcorn animation from bottom of the screen */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 175px; /* Adjust the size of the popcorn */
+    height: 170px;
+    background-image: url('p2.png'); /* Use an image of popcorn */
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: pop 2s forwards; /* Use pop animation for 2 seconds */
+  }
+  
+  @keyframes pop {
+    0% {
+      bottom: -100px; /* Start position */
+      transform: translateX(-50%) scale(0); /* Initially, scale down */
+    }
+    50% {
+      transform: translateX(-50%) scale(1.2); /* Pop up */
+    }
+    100% {
+      bottom: 100px; /* End position */
+      transform: translateX(-50%) scale(1); /* Restore to original size */
+    }
+  }

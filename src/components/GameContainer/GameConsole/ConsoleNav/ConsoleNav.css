@@ -1,0 +1,12 @@
+/* Assuming ToggleButtonGroup and ToggleButton are styled components */
+.ToggleButtonGroup-root {
+    width: 100%; /* Set the width of the ToggleButtonGroup to 100% */
+  }
+  
+  .ToggleButton-root {
+    width: 100%; /* Set the width of the ToggleButton to 100% */
+  }
+  
+  .Button {
+    
+  }

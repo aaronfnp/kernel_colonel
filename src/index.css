@@ -154,14 +154,14 @@ button[type="submit"] {
 }
 
 .gameContainer {
-  width: 45%;
+  width: 50%;
   margin: 5%;
   background-color: #F67F00;
-  border-radius: 10%;
+  border-radius: 8%;
 }
 
 .storeContainer {
-  width: 45%;
+  width: 50%;
   margin: 5%;
   background-color: white;
   border-radius: 10%;
