@@ -5,7 +5,9 @@ const User = require('../../models/user');
 module.exports = {
   create,
   login,
-  checkToken
+  checkToken,
+  updateScore,
+  loadLB,
 };
 
 async function create(req, res) {
@@ -43,3 +45,32 @@ async function login(req, res) {
     console.log('req.user', req.user)
     res.json(req.exp);
   }
+
+  async function updateScore(req, res) {
+    try {
+      const userId = req.params.userId;
+      const newScore = req.body.score;
+  
+      const user = await User.findByIdAndUpdate(userId, { score: newScore }, { new: true });
+  
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      res.json({ message: 'Score updated successfully', user });
+    } catch (error) {
+      console.error('Error updating score:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+
+async function loadLB(req, res) {
+  try {
+    // Find users and sort by score in descending order, limit to 3
+    const leaderboard = await User.find().sort({ score: -1 }).limit(3);
+    res.json(leaderboard);
+  } catch (error) {
+    console.error('Error fetching leaderboard:', error);
+    res.status(500).json({ error: 'Server error' });
+  }}
