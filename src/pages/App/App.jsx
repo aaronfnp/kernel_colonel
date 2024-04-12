@@ -15,7 +15,7 @@ export default function App() {
       { user ?
           <>
           <NavBar user={user} setUser={setUser} />
-          <GamePage />
+          <GamePage user={user} setUser={setUser} />
           </>
           :
           <AuthPage setUser={setUser} />

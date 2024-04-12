@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Corn = require('./cornModel');
 const popcornMachineSchema = new mongoose.Schema({
     name: { type: String, required: true},
-    upgradeLevel: { type: Number, required: true },
+    Level: { type: Number, required: true },
     price: { type: Number, required: true },
     productionRate: { type: Number, required: true},
     effect: { type: String, required: true },
