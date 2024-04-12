@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import './ConsoleNav.css'
+
 
 function ConsoleNav({ setDisplayState }) {
   const [alignment, setAlignment] = useState('web');
@@ -13,8 +15,8 @@ function ConsoleNav({ setDisplayState }) {
   };
 
   return (
-    <div>
-      <h3>Console Nav</h3>
+    <div className='Buttons'>
+      {/* <h3>Console Nav</h3> */}
 
       {/* ToggleButtonGroup example */}
       <ToggleButtonGroup
