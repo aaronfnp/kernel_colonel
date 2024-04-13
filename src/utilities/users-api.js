@@ -18,6 +18,10 @@ export function updateScore(userId, newScore) {
   return sendRequest(`${BASE_URL}/${userId}/update-score`, 'PUT', { score: newScore });
 }
 
+export function updateInfo(userId, newName, newEmail) {
+  return sendRequest(`${BASE_URL}/${userId}/update-info`, 'PUT', {name: newName, email: newEmail})
+}
+
 export function loadLB() {
   return sendRequest(`${BASE_URL}/loadLB`);
 }

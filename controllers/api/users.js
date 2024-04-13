@@ -7,6 +7,7 @@ module.exports = {
   login,
   checkToken,
   updateScore,
+  updateInfo,
   loadLB,
 };
 
@@ -60,6 +61,25 @@ async function login(req, res) {
       res.json({ message: 'Score updated successfully', user });
     } catch (error) {
       console.error('Error updating score:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+  async function updateInfo(req, res) {
+    try {
+      const userId = req.params.userId;
+      const newName = req.body.name; 
+      const newEmail = req.body.email; 
+  
+      const user = await User.findByIdAndUpdate(userId, { name: newName, email: newEmail }, { new: true });
+  
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      res.json({ message: 'Info updated successfully', user });
+    } catch (error) {
+      console.error('Error updating info:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
   }

@@ -49,7 +49,10 @@ function GamePage({ user, setUser }) {
             cornVal={cornVal} 
             setCornVal={setCornVal} 
             cornValMod_Passive={cornValMod_Passive}
-            cornValMod_Active={cornValMod_Active} />
+            cornValMod_Active={cornValMod_Active}
+            user={user}
+            setUser={setUser}
+            />
         </div>
         <div className='storeContainer'>
           <StoreContainer 
