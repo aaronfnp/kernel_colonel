@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 
-function StoreButtonList({cornVal, setCornVal, setCornValMod_Passive, setCornValMod_Active}) {
+function StoreButtonList({cornVal, setCornVal, setCornValMod_Passive, setCornValMod_Active, isSell, buyModifier}) {
   const [passiveModifier, setPassiveModifier] = useState(0);
   // STARTING VAL BE SAME AS GAMEPAGE VAL FOR CornValMod_Active 
   const [activeModifier, setActiveModifier] = useState(1);
@@ -44,11 +44,11 @@ function StoreButtonList({cornVal, setCornVal, setCornValMod_Passive, setCornVal
     <div>
       <h3>StoreButtonList</h3>
       {/* CPS BUTTONS */}
-      <button onClick={() => addPassiveModifier(1)}>Upgrade + 1 CPS</button>
-      <button onClick={() => addPassiveModifier(2)}>Upgrade + 2 CPS</button>
-      <button onClick={() => addPassiveModifier(5)}>Upgrade + 5 CPS</button>
+      <button onClick={() => addPassiveModifier(1 * buyModifier)}>Upgrade + 1 CPS</button>
+      <button onClick={() => addPassiveModifier(2 * buyModifier)}>Upgrade + 2 CPS</button>
+      <button onClick={() => addPassiveModifier(5 * buyModifier)}>Upgrade + 5 CPS</button>
       {/* CLICK MODIFIER BUTTONS */}
-        <button onClick={() => addActiveModifier(1)}>Upgrade + 1 Click</button>
+        <button onClick={() => addActiveModifier(1 * buyModifier)}>Upgrade + 1 Click</button>
       {/* TEST FOR BUYING  */}
         <button onClick={() => {
           if (cornVal >= 20) {
