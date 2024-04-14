@@ -94,7 +94,7 @@ async function login(req, res) {
 async function loadLB(req, res) {
   try {
     // Find users and sort by score in descending order, limit to 3
-    const leaderboard = await User.find().sort({ score: -1 }).limit(3);
+    const leaderboard = await User.find().sort({ totalScore: -1 }).limit(3);
     res.json(leaderboard);
   } catch (error) {
     console.error('Error fetching leaderboard:', error);

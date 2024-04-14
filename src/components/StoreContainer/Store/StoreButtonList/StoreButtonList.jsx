@@ -48,24 +48,24 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
       <h3>StoreButtonList</h3>
       {/* CPS BUTTONS */}
       <button onClick={() => {
-        if (cornVal >= 20) {
-          setCornVal(cornVal - 20);
+        if (cornVal >= (20 * buyModifier)) {
+          setCornVal(cornVal - (20* buyModifier));
           addPassiveModifier(1 * buyModifier)
         } else {
           alert("Not enough corn!");
         }
         }}>+ 1 CPS | Cost 20</button>
       <button onClick={() => {
-        if (cornVal >= 100) {
-          setCornVal(cornVal - 100);
+        if (cornVal >= (100 * buyModifier)) {
+          setCornVal(cornVal - (100* buyModifier));
           addPassiveModifier(5 * buyModifier)
         } else {
           alert("Not enough corn!");
         }
         }}>+ 5 CPS | Cost 100</button>
       <button onClick={() => {
-        if (cornVal >= 200) {
-          setCornVal(cornVal - 200);
+        if (cornVal >= (200 * buyModifier)) {
+          setCornVal(cornVal - (200 * buyModifier));
           addPassiveModifier(10 * buyModifier)
         } else {
           alert("Not enough corn!");
@@ -73,8 +73,8 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
         }}>+ 10 CPS | Cost 200</button>
       {/* CLICK MODIFIER BUTTONS */}
       <button onClick={() => {
-        if (cornVal >= 10) {
-          setCornVal(cornVal - 10);
+        if (cornVal >= (10* buyModifier)) {
+          setCornVal(cornVal - (10* buyModifier));
           addActiveModifier(1 * buyModifier)
         } else {
           alert("Not enough corn!");
