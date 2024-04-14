@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
-const Corn = require('./cornModel');
-const popcornMachineSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+
+
+const upgradeSchema = new Schema({
     name: { type: String, required: true},
     Level: { type: Number, required: true },
     price: { type: Number, required: true },
@@ -9,4 +11,4 @@ const popcornMachineSchema = new mongoose.Schema({
     img: { type: String, required: true },
   });
 
-module.exports = mongoose.model('Popcorn Machine', popcornMachineSchema);
+module.exports = mongoose.model('upgrade', upgradeSchema);

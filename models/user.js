@@ -19,7 +19,8 @@ const userSchema = new Schema({
   },
   corn: {type: Number, ref: 'Corn.cornVal', default: 0},
   score: { type: Number, ref: 'Corn.totalCornVal', default: 0 },
-  popcornMachineLevel: { type: Number, default: 0 } //I believe each new upgrade model will get its own level state
+  upgrades: [{ type: Schema.Types.ObjectId, ref: 'Upgrade' }]
+  
 
 }, {
   timestamps: true,
