@@ -2,7 +2,7 @@ import React from 'react';
 import Chip from '@mui/material/Chip';
 import './GameInterface.css'; // Import CSS file
 
-function GameInterface({ cornVal, setCornVal, cornValMod_Passive, cornValMod_Active }) {
+function GameInterface({ cornVal, setCornVal, totalCornVal, setTotalCornVal, cornValMod_Passive, cornValMod_Active }) {
 
   function popcornAnimation() {
     // Calculate random coordinates across the entire page
@@ -38,7 +38,7 @@ function GameInterface({ cornVal, setCornVal, cornValMod_Passive, cornValMod_Act
       
       <div>
         {/* Button for clicking */}
-        <button className="custom-button" onClick={() => { setCornVal(cornVal + cornValMod_Active); popcornAnimation(); }}>CLICK</button>
+        <button className="custom-button" onClick={() => { setCornVal(cornVal + cornValMod_Active); setTotalCornVal(totalCornVal + cornValMod_Active); popcornAnimation(); }}>CLICK</button>
       </div>
     </div>
   )

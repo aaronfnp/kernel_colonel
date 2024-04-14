@@ -3,13 +3,15 @@ import GameScreen from './GameScreen/GameScreen'
 import GameConsole from './GameConsole/GameConsole'
 import './GameContainer.css'
 
-function GameContainer({cornVal, setCornVal, cornValMod_Passive, cornValMod_Active, user, setUser}) {
+function GameContainer({cornVal, setCornVal, totalCornVal, setTotalCornVal, cornValMod_Passive, cornValMod_Active, user, setUser}) {
   return (
     <div>
       {/* <h1>GameContainer</h1> */}
       <GameScreen 
         cornVal={cornVal} 
         setCornVal={setCornVal} 
+        totalCornVal={totalCornVal}
+        setTotalCornVal={setTotalCornVal}
         cornValMod_Passive={cornValMod_Passive}
         cornValMod_Active={cornValMod_Active} />
       <GameConsole user={user} setUser={setUser}/>

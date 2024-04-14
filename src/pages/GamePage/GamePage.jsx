@@ -6,7 +6,8 @@ import { updateScore } from '../../utilities/users-api';
 import SplineBackground from './SplineBackground'; // Import the SplineBackground component
 
 function GamePage({ user, setUser }) {
-  const [cornVal, setCornVal] = useState(0);
+  const [cornVal, setCornVal] = useState(user.score);
+  const [totalCornVal, setTotalCornVal] = useState(user.totalScore);
   const [cornValMod_Passive, setCornValMod_Passive] = useState(0);
   const [cornValMod_Active, setCornValMod_Active] = useState(1);
 
@@ -20,24 +21,44 @@ function GamePage({ user, setUser }) {
       }
     };
     initialize();
+
+    // CURRENTLY SAVES EVERY 10 SECS
+    // NEED TO CHANGE TO IF VALUE IS !== 
+    const saveInterval = setInterval(() => {
+      handleSaveScore();
+    }, 10000);
+
+    return () => clearInterval(saveInterval);
+
   }, [user.score]);
 
   // Function to handle saving score
   async function handleSaveScore() {
     try {
-      await updateScore(user._id, cornVal);
-
-      setUser(prevUser => ({
-        ...prevUser,
-        score: cornVal
-      }));
-
-      console.log(`Updated Score to ${cornVal}`);
-      console.log(user); // Ensure user is updated
+      // Update both score and totalScore
+      await updateScore(user._id, cornVal, totalCornVal);
+  
+      // Update local state
+      setCornVal(prevCornVal => {
+        setUser(prevUser => ({
+          ...prevUser,
+          score: prevCornVal
+        }));
+        console.log(`Updated Score to ${prevCornVal}`);
+        return prevCornVal;
+      });
+  
+      setTotalCornVal(prevTotalCornVal => {
+        setUser(prevUser => ({
+          ...prevUser,
+          totalScore: prevTotalCornVal
+        }));
+        console.log(`Updated Total Score to ${prevTotalCornVal}`);
+        return prevTotalCornVal;
+      });
     } catch (error) {
       console.error('Error updating score:', error);
-    }
-  }
+    }}
 
   return (
     <div className='GamePage'>
@@ -48,6 +69,8 @@ function GamePage({ user, setUser }) {
           <GameContainer 
             cornVal={cornVal} 
             setCornVal={setCornVal} 
+            totalCornVal={totalCornVal}
+            setTotalCornVal={setTotalCornVal}
             cornValMod_Passive={cornValMod_Passive}
             cornValMod_Active={cornValMod_Active}
             user={user}
@@ -58,6 +81,8 @@ function GamePage({ user, setUser }) {
           <StoreContainer 
             cornVal={cornVal} 
             setCornVal={setCornVal}
+            totalCornVal={totalCornVal}
+            setTotalCornVal={setTotalCornVal}
             setCornValMod_Passive={setCornValMod_Passive}
             setCornValMod_Active={setCornValMod_Active}  />
         </div>

@@ -50,14 +50,20 @@ async function login(req, res) {
   async function updateScore(req, res) {
     try {
       const userId = req.params.userId;
-      const newScore = req.body.score;
-  
-      const user = await User.findByIdAndUpdate(userId, { score: newScore }, { new: true });
-  
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-      }
-  
+      const newScore = req.body.newScore;
+      const newTotalScore = req.body.newTotalScore
+      const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Update the score and totalScore
+    user.score = newScore;
+    user.totalScore = newTotalScore;
+
+    // Save the updated user
+    await user.save();
       res.json({ message: 'Score updated successfully', user });
     } catch (error) {
       console.error('Error updating score:', error);

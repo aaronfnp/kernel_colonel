@@ -14,8 +14,8 @@ export function checkToken() {
   return sendRequest(`${BASE_URL}/check-token`);
 }
 
-export function updateScore(userId, newScore) {
-  return sendRequest(`${BASE_URL}/${userId}/update-score`, 'PUT', { score: newScore });
+export function updateScore(userId, newScore, newTotalScore) {
+  return sendRequest(`${BASE_URL}/${userId}/update-score`, 'PUT', { newScore: newScore, newTotalScore: newTotalScore });
 }
 
 export function updateInfo(userId, newName, newEmail) {
