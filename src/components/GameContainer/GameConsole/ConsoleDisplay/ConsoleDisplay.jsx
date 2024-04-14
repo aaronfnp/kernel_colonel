@@ -19,7 +19,7 @@ function ConsoleDisplay({displayState}) {
 
     return (
         <div>
-            <h3>Console Display:</h3>
+            {/* <h3>Console Display:</h3> */}
             <div class="console-display">
             {displayComponent}
             </div>
