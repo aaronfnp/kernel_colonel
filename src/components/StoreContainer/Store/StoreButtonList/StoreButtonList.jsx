@@ -100,8 +100,8 @@ function StoreButtonList({ cornVal, setCornVal, setCornValMod_Passive, setCornVa
       setCornVal(cornVal - upgrade.price);
       setPassiveModifier(prevModifier => prevModifier + upgrade.productionRate);
       const updatedUpgradesData = [...upgradesData];
-      updatedUpgradesData[index].level++; // Increment level
-      setUpgradesData(updatedUpgradesData); // Update upgrades data state
+      updatedUpgradesData[index].level++; 
+      setUpgradesData(updatedUpgradesData);
       console.log(`Upgraded ${upgrade.name} to level ${updatedUpgradesData[index].level}`);
     } else {
       alert("Not enough corn!");
