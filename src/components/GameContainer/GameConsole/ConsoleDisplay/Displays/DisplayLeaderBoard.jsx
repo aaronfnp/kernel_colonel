@@ -16,7 +16,7 @@ function DisplayLeaderBoard() {
 
     fetchLeaderBoard();
   }, []);
-
+  
   return (
     <div>
       <h4>Current Display: LeaderBoard</h4>
