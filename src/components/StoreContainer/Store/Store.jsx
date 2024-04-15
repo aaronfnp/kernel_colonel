@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-import StoreBar from './StoreBar/StoreBar'
-import StoreButtonList from './StoreButtonList/StoreButtonList'
-
-function Store({cornVal, setCornVal, setCornValMod_Passive, setCornValMod_Active}) {
-  return (
-    <div>
-      <h2>Store</h2>
-      <StoreBar />
-      <StoreButtonList 
-      cornVal={cornVal} 
-      setCornVal={setCornVal}
-      setCornValMod_Passive={setCornValMod_Passive}
-      setCornValMod_Active={setCornValMod_Active} />
-    </div>
-  )
-}
-
-export default Store
-=======
 import React, {useEffect, useState} from 'react'
 import StoreBar from './StoreBar/StoreBar'
 import StoreButtonList from './StoreButtonList/StoreButtonList'
@@ -59,4 +38,3 @@ function Store({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMo
 }
 
 export default Store
->>>>>>> 5197e5ba8c538bf8d9dc370f928a8aa8b810a506

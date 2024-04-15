@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-function DisplaySettings() {
-  return (
-    <div>
-      <h4>Current Display: Settings</h4>
-      <h5>Username:</h5>
-      <h5>Email:</h5>
-    </div>
-  )
-}
-
-export default DisplaySettings
-=======
 import React, { useState } from 'react';
 import { updateInfo } from '../../../../../utilities/users-api';
 
@@ -88,4 +73,3 @@ function DisplaySettings({ user, setUser }) {
 }
 
 export default DisplaySettings;
->>>>>>> 5197e5ba8c538bf8d9dc370f928a8aa8b810a506

@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-function StoreBar() {
-  return (
-    <div>
-      <h3>Store Bar</h3>
-      <small>Buy</small>
-      <small>Sell</small>
-      <small>x1</small>
-      <small>x5</small>
-    </div>
-  )
-}
-
-export default StoreBar
-=======
 import React from 'react'
 
 function StoreBar({setIsSell, setBuyModifier}) {
@@ -31,4 +14,3 @@ function StoreBar({setIsSell, setBuyModifier}) {
 }
 
 export default StoreBar
->>>>>>> 5197e5ba8c538bf8d9dc370f928a8aa8b810a506
