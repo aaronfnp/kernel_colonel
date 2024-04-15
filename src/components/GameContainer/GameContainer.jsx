@@ -6,7 +6,7 @@ import './GameContainer.css'
 function GameContainer({cornVal, setCornVal, cornValMod_Passive, cornValMod_Active}) {
   return (
     <div>
-      {/* <h1>GameContainer</h1> */}
+      <h1>GameContainer</h1>
       <GameScreen 
         cornVal={cornVal} 
         setCornVal={setCornVal} 
