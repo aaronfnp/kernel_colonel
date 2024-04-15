@@ -5,14 +5,14 @@ import DisplayStats from './Displays/DisplayStats'
 import { useState } from 'react'
 import  './ConsoleDisplay.css'
 
-function ConsoleDisplay({displayState}) {
+function ConsoleDisplay({displayState, user, setUser}) {
 
     let displayComponent;
 
     if (displayState === 'Stats') {
-        displayComponent = <DisplayStats />;
+        displayComponent = <DisplayStats user={user} />;
     } else if (displayState === 'Settings') {
-        displayComponent = <DisplaySettings />;
+        displayComponent = <DisplaySettings user={user} setUser={setUser} />;
     } else if (displayState === 'LeaderBoard') {
         displayComponent = <DisplayLeaderBoard />;
     }

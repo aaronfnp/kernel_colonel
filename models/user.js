@@ -18,7 +18,8 @@ const userSchema = new Schema({
     required: true
   },
   corn: {type: Number, ref: 'Corn.cornVal', default: 0},
-  score: { type: Number, ref: 'Corn.totalCornVal', default: 0 },
+  score: { type: Number, ref: 'Corn.totalCornVal', default: 0 }, // Using this as CURRENT $
+  totalScore: { type: Number, ref: 'Corn.totalCornVal', default: 0 }, // Using this as TOTAL
   popcornMachineLevel: { type: Number, default: 0 } //I believe each new upgrade model will get its own level state
 
 }, {
