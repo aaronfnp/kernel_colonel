@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const upgradeSchema = new Schema({
     name: { type: String, required: true},
-    Level: { type: Number, required: true },
+    level: { type: Number, required: true },
     price: { type: Number, required: true },
     productionRate: { type: Number, required: true},
     effect: { type: String, required: true },

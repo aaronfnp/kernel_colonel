@@ -14,20 +14,28 @@ mongoose.connect('mongodb+srv://aaronfnp:CFTC6oA2Zp180L9D@student-cluster.l8a3zv
 const upgradesData = [
     {
         name: "Popcorn Machine",
-        Level: 0,
+        level: 0,
         price: 20,
-        productionRate: 5,
-        effect: "WIP",
+        productionRate: 1,
+        effect: "Passive",
         img: "https://cdn.iconscout.com/icon/premium/png-512-thumb/popcorn-machine-10736056-8784226.png?f=webp&w=256"
-    },
-    {
+      },
+      {
         name: "Popcorn Cannon",
-        Level: 0,
+        level: 0,
         price: 40,
-        productionRate: 10,
-        effect: "WIP",
+        productionRate: 2,
+        effect: "Passive",
         img: "https://cdn.iconscout.com/icon/free/png-512/free-cannon-1777375-1512065.png?f=webp&w=256"
-    },
+      },
+      {
+        name: "Frying Pan",
+        level: 0,
+        price: 60,
+        productionRate: 0.5,
+        effect: "Active",
+        img: "fakelink"
+      },
 
 ];
 
