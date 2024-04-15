@@ -62,14 +62,14 @@ import UpgradeItem from './UpgradeItem';
 //   );
 // }
 
-function StoreButtonList({ cornVal, setCornVal, setCornValMod_Passive, setCornValMod_Active }) {
+function StoreButtonList({ cornVal, setCornVal, setCornValMod_Passive }) {
   const [passiveModifier, setPassiveModifier] = useState(0);
   const [upgradesData, setUpgradesData] = useState([
     {
       name: "Popcorn Machine",
       level: 0,
       price: 20,
-      productionRate: 5,
+      productionRate: 1,
       effect: "WIP",
       img: "https://cdn.iconscout.com/icon/premium/png-512-thumb/popcorn-machine-10736056-8784226.png?f=webp&w=256"
     },
@@ -77,7 +77,7 @@ function StoreButtonList({ cornVal, setCornVal, setCornValMod_Passive, setCornVa
       name: "Popcorn Cannon",
       level: 0,
       price: 40,
-      productionRate: 10,
+      productionRate: 4,
       effect: "WIP",
       img: "https://cdn.iconscout.com/icon/free/png-512/free-cannon-1777375-1512065.png?f=webp&w=256"
     }
@@ -94,15 +94,38 @@ function StoreButtonList({ cornVal, setCornVal, setCornValMod_Passive, setCornVa
     };
   }, [passiveModifier, setCornVal]);
 
+  // CALLED BY PASSIVE MODIFIER FUNCTION
+  const setCPS = (newScoreModifier) => {
+    setCornValMod_Passive(newScoreModifier);
+  };
+
+  // PASSIVE MODIFIER FUNCTION USED BY BUTTONS, SETS STATES ON GAMEPAGE
+  const addPassiveModifier = (modifierValue) => {
+    setPassiveModifier(prevModifier => {
+      const newModifier = prevModifier + modifierValue;
+      setCPS(newModifier);
+      return newModifier;
+    });
+  };
+
   const handleUpgrade = (index) => {
     const upgrade = upgradesData[index];
-    if (cornVal >= upgrade.price) {
-      setCornVal(cornVal - upgrade.price);
-      setPassiveModifier(prevModifier => prevModifier + upgrade.productionRate);
-      const updatedUpgradesData = [...upgradesData];
-      updatedUpgradesData[index].level++; 
-      setUpgradesData(updatedUpgradesData);
-      console.log(`Upgraded ${upgrade.name} to level ${updatedUpgradesData[index].level}`);
+    const newLevel = upgrade.level + 1;
+    const newPrice = upgrade.price + 0.6 * newLevel;
+    const newProductionRate = upgrade.productionRate + 0.03 * newLevel;
+  
+    if (cornVal >= newPrice) {
+      setCornVal(cornVal - newPrice);
+  
+      addPassiveModifier(newProductionRate);
+  
+      setUpgradesData(prevUpgradesData => {
+        const updatedUpgradesData = [...prevUpgradesData];
+        updatedUpgradesData[index] = { ...upgrade, level: newLevel, price: newPrice, productionRate: newProductionRate };
+        return updatedUpgradesData;
+      });
+  
+      console.log(`Upgraded ${upgrade.name} to level ${newLevel}`);
     } else {
       alert("Not enough corn!");
     }
@@ -113,15 +136,19 @@ function StoreButtonList({ cornVal, setCornVal, setCornValMod_Passive, setCornVa
       <h3>StoreButtonList</h3>
       {upgradesData.map((upgrade, index) => (
         <div key={index}>
-          <UpgradeItem upgrade={upgrade} />
-          <button onClick={() => handleUpgrade(index)}>Upgrade ${upgrade.price}</button>
+          <div className="upgrade-item">
+            <div className="upgrade-header">
+              <h4>{upgrade.name}</h4>
+              <p className="level">Level: {upgrade.level}</p>
+            </div>
+            <p>Effect: {upgrade.effect}</p>
+            <p>Production Rate: {upgrade.productionRate}</p>
+            <button onClick={() => handleUpgrade(index)}>Upgrade ${upgrade.price}</button>
+          </div>
         </div>
       ))}
     </div>
   );
 }
-
-
-
 
 export default StoreButtonList;

@@ -170,3 +170,30 @@ button[type="submit"] {
 .cornStats {
   padding: 10px;
 }
+
+.upgrade-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: solid black;
+}
+
+.upgrade-header {
+  display: flex;
+  align-items: center;
+}
+
+.level {
+  margin-left: 10px;
+}
+
+.upgrade-body{
+  display: flex;
+  align-items: center;
+}
+
+.effect {
+  margin: 10px;
+}
