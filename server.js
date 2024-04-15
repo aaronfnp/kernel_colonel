@@ -25,7 +25,6 @@ app.use((req, res, next) => {
   next();
 }); 
 
-
 const port = process.env.PORT || 3001;
 
 // Put API routes here, before the "catch all" route

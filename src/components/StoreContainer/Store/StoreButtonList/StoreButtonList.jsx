@@ -39,7 +39,7 @@ function StoreButtonList({cornVal, setCornVal, setCornValMod_Passive, setCornVal
   const setCPS = (newScoreModifier) => {
     setCornValMod_Passive(newScoreModifier);
   };
-
+  
   return (
     <div>
       <h3>StoreButtonList</h3>

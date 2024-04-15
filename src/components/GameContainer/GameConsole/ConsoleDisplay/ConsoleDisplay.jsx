@@ -16,7 +16,7 @@ function ConsoleDisplay({displayState}) {
     } else if (displayState === 'LeaderBoard') {
         displayComponent = <DisplayLeaderBoard />;
     }
-
+    
     return (
         <div>
             {/* <h3>Console Display:</h3> */}
