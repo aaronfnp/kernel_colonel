@@ -5,4 +5,3 @@ const BASE_URL = '/api/upgrades';
 export function upgradesIndex() {
     return sendRequest(`${BASE_URL}/index`);
   }
-  
