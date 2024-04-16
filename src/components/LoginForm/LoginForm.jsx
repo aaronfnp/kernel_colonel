@@ -26,7 +26,7 @@ export default function LoginForm({ setUser }) {
       setError('Log In Failed - Try Again');
     }
   }
-
+  
   return (
     <div>
       <div className="form-container">
