@@ -12,12 +12,21 @@ mongoose.connect('mongodb+srv://aaronfnp:CFTC6oA2Zp180L9D@student-cluster.l8a3zv
 
 const upgradesData = [
       {
+        name: "Butter Finger",
+        description: "The instrument of the Gods",
+        quantity: 0,
+        price: 100,
+        productionRate: 1,
+        isPassive: false,
+        img: "fakelink",
+      },
+      {
         name: "Frying Pan",
         description: "Just like grammy used to use",
         quantity: 0,
         price: 15,
-        productionRate: 1,
-        isPassive: false,
+        productionRate: 0.1,
+        isPassive: true,
         img: "https://cdn.iconscout.com/icon/premium/png-512-thumb/popcorn-machine-10736056-8784226.png?f=webp&w=256"
       },
       {
