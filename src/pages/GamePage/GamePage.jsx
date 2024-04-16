@@ -63,7 +63,7 @@ function GamePage({ user, setUser }) {
   return (
     <div className='GamePage'>
       <SplineBackground /> {/* Include the SplineBackground component */}
-      <h1>GamePage</h1>
+      <h1 className='Kernel'>Kernel Colonel</h1>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div className='gameContainer'>
           <GameContainer 

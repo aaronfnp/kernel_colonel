@@ -1,15 +1,25 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { upgradesIndex } from '../../../../utilities/upgrades-api';
-import StoreButton from '../StoreButtonList/StoreButton/StoreButton'
+import StoreButton from '../StoreButtonList/StoreButton/StoreButton';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
-function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier}) {
+function StoreButtonList({
+  cornVal,
+  setCornVal,
+  totalCornVal,
+  setTotalCornVal,
+  setCornValMod_Passive,
+  setCornValMod_Active,
+  isBuying,
+  buyModifier
+}) {
   const [passiveModifier, setPassiveModifier] = useState(0);
-  // STARTING VAL BE SAME AS GAMEPAGE VAL FOR CornValMod_Active 
   const [activeModifier, setActiveModifier] = useState(1);
   const [upgradesList, setUpgradesList] = useState([]);
+  const [canAffordUpgrades, setCanAffordUpgrades] = useState(false);
   const timerRef = useRef();
 
-  // FETCHING ALL OF THE CURRENT UPGRADES
   useEffect(() => {
     const fetchUpgrades = async () => {
       try {
@@ -21,54 +31,58 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
     };
 
     fetchUpgrades();
-
   }, []);
-  
-  // TIMER BASED CPS USE EFFECT
+
+  // Check if the user can afford any upgrades
   useEffect(() => {
-    timerRef.current = setInterval(() => {
-      setCornVal(secs => secs + passiveModifier);
-      setTotalCornVal(secs => secs + passiveModifier);
-    }, 1000);
+    checkCanAffordUpgrades();
+  }, [cornVal, upgradesList]);
 
-    return () => {
-      clearInterval(timerRef.current);
-    };
-  }, [passiveModifier, setCornVal]);
+  const checkCanAffordUpgrades = () => {
+    for (const upgrade of upgradesList) {
+      if (cornVal >= upgrade.price) {
+        setCanAffordUpgrades(true);
+        return;
+      }
+    }
+    setCanAffordUpgrades(false);
+  };
 
+  // Buy upgrade logic
+  const handleBuyUpgrade = (price, productionRate, isPassive) => {
+    if (cornVal >= price) {
+      setCornVal(cornVal - price);
+      if (isPassive) {
+        setCornValMod_Passive(prev => prev + productionRate);
+      } else {
+        setCornValMod_Active(prev => prev + productionRate);
+      }
+    } else {
+      alert('Not enough corn to buy this upgrade.');
+    }
+  };
 
-  
-
+  // Render upgrades only if they can be afforded for the first time
   return (
-
-    // WILL CHANGE THIS TO AN ARRAY OF UPGRADES, INTO A StoreButton COMPONENT
     <div>
       <h3>StoreButtonList</h3>
-      {/* CPS BUTTONS */}
       <div>
-        {upgradesList.map((upgrade, idx) => (
-                  <StoreButton 
-                  key={idx} 
-                  id={upgrade._id} 
-                  name={upgrade.name} 
-                  description={upgrade.description} 
-                  quantity={upgrade.quantity} 
-                  price={upgrade.price} 
-                  productionRate={upgrade.productionRate} 
-                  isPassive={upgrade.isPassive} 
-                  img={upgrade.img} 
+        {canAffordUpgrades ? (
+          upgradesList.map((upgrade, idx) => (
+            <Card key={idx} style={{ margin: '10px' }}>
+              <CardContent>
+                <StoreButton
+                  {...upgrade}
+                  handleBuyUpgrade={handleBuyUpgrade}
                   cornVal={cornVal}
-                  setCornVal={setCornVal}
-                  buyModifier={buyModifier}
-                  setActiveModifier={setActiveModifier}
-                  activeModifier={activeModifier}
-                  passiveModifier={passiveModifier}
-                  setPassiveModifier={setPassiveModifier}
-                  setCornValMod_Passive={setCornValMod_Passive}
-                  setCornValMod_Active={setCornValMod_Active}
-                  />
-              ))}
-        </div>
+                />
+              </CardContent>
+            </Card>
+          ))
+        ) : (
+          <p>No upgrades available yet.</p>
+        )}
+      </div>
     </div>
   );
 }
