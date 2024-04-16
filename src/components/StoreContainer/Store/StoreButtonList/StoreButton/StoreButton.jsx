@@ -66,7 +66,7 @@ function StoreButton(props) {
       }}>
           {props.name} x{quantity}
           <br></br>
-          {props.description}
+          <small>{props.description}</small>
           <br></br>
           +{props.productionRate} {modifierType} | Cost {price}
           </button>
