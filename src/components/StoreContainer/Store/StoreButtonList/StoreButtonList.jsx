@@ -4,6 +4,7 @@ import StoreButton from '../StoreButtonList/StoreButton/StoreButton'
 
 function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier}) {
   const [passiveModifier, setPassiveModifier] = useState(0);
+  // STARTING VAL BE SAME AS GAMEPAGE VAL FOR CornValMod_Active 
   const [activeModifier, setActiveModifier] = useState(1);
   const [upgradesList, setUpgradesList] = useState([]);
   const timerRef = useRef();
@@ -35,17 +36,6 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
     };
   }, [passiveModifier, setCornVal]);
 
-  const setCPS = (newScoreModifier) => {
-    setCornValMod_Passive(Math.floor(newScoreModifier * 1000) / 1000);
-  };
-
-  const addPassiveModifier = (modifierValue) => {
-    setPassiveModifier(prevModifier => {
-      const newModifier = prevModifier + modifierValue;
-      setCPS(newModifier);
-      return newModifier;
-    });
-  };
 
   
 
@@ -55,24 +45,32 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
     <div>
       <h3>StoreButtonList</h3>
       {/* CPS BUTTONS */}
-      <button onClick={() => addPassiveModifier(1)}>Upgrade + 1 CPS</button>
-      <button onClick={() => addPassiveModifier(2)}>Upgrade + 2 CPS</button>
-      <button onClick={() => addPassiveModifier(5)}>Upgrade + 5 CPS</button>
-      {/* CLICK MODIFIER BUTTONS */}
-        <button onClick={() => addActiveModifier(1)}>Upgrade + 1 Click</button>
-      {/* TEST FOR BUYING  */}
-        <button onClick={() => {
-          if (cornVal >= 20) {
-            setCornVal(cornVal - 20);
-          } else {
-            alert("Not enough corn!");
-          }
-        }}>COST 20 CORN</button>
+      <div>
+        {upgradesList.map((upgrade, idx) => (
+                  <StoreButton 
+                  key={idx} 
+                  id={upgrade._id} 
+                  name={upgrade.name} 
+                  description={upgrade.description} 
+                  quantity={upgrade.quantity} 
+                  price={upgrade.price} 
+                  productionRate={upgrade.productionRate} 
+                  isPassive={upgrade.isPassive} 
+                  img={upgrade.img} 
+                  cornVal={cornVal}
+                  setCornVal={setCornVal}
+                  buyModifier={buyModifier}
+                  setActiveModifier={setActiveModifier}
+                  activeModifier={activeModifier}
+                  passiveModifier={passiveModifier}
+                  setPassiveModifier={setPassiveModifier}
+                  setCornValMod_Passive={setCornValMod_Passive}
+                  setCornValMod_Active={setCornValMod_Active}
+                  />
+              ))}
+        </div>
     </div>
-  )};
-
-
-
-
+  );
+}
 
 export default StoreButtonList;

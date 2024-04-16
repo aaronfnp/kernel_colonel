@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 function StoreButton(props) {
+  const [quantity, setQuantity] = useState(props.quantity);
   let modifierType = null;
   let modifierBuySell = 1;
 
@@ -13,6 +14,8 @@ function StoreButton(props) {
       modifierType = 'On Click'
     }
 
+
+    
     // ACTIVE (CLICK) MODIFIER FUNCTION USED BY BUTTONS, SETS STATES ON GAMEPAGE
   const addActiveModifier = (modifierValue) => {
     props.setActiveModifier(prevModifier => prevModifier + modifierValue);
@@ -40,6 +43,7 @@ function StoreButton(props) {
       <button onClick={() => {
         if (props.cornVal >= (props.price * props.buyModifier)) {
           props.setCornVal(props.cornVal - (props.price * props.buyModifier));
+          setQuantity(prevQuantity => prevQuantity + props.buyModifier);
           if (props.isPassive) addPassiveModifier(props.productionRate * props.buyModifier);
           else if (!props.isPassive) addActiveModifier(props.productionRate * props.buyModifier);
           
@@ -48,7 +52,7 @@ function StoreButton(props) {
           alert("Not enough corn!");
         }
         }}>
-          {props.name}
+          {props.name} x{quantity}
           <br></br>
           {props.description}
           <br></br>
