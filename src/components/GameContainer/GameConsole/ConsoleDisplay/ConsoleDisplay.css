@@ -1,6 +1,5 @@
 .console-display{
     height: 200px;
-    border: 1px solid black;
-    margin-left: 5px;
-    border-radius: 20px;
+    border: 7px solid orange;
+    /* border-radius: 20px; */
 }

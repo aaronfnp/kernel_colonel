@@ -1,6 +1,7 @@
 .corn-click {
-    border: 1px solid black;
-    border-radius: 10%;
+    border: 5px solid orange;
+    border-top-left-radius: 25%;
+    border-top-right-radius: 25%;
 }
 
 .small-3d-text {
