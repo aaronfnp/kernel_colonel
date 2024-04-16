@@ -3,7 +3,7 @@ import './Font.css'; // Import your CSS file containing font styles
 import GameInterface from './GameInterface/GameInterface';
 import './GameScreen.css';
 
-function GameScreen({ cornVal, setCornVal, cornValMod_Passive, cornValMod_Active }) {
+function GameScreen({ cornVal, setCornVal, totalCornVal, setTotalCornVal, cornValMod_Passive, cornValMod_Active }) {
   return (
     <div className='corn-click'>
       {/* Apply the CSS class to the <h2> element */}
@@ -11,6 +11,8 @@ function GameScreen({ cornVal, setCornVal, cornValMod_Passive, cornValMod_Active
       <GameInterface 
         cornVal={cornVal} 
         setCornVal={setCornVal} 
+        totalCornVal={totalCornVal}
+        setTotalCornVal={setTotalCornVal}
         cornValMod_Passive={cornValMod_Passive}
         cornValMod_Active={cornValMod_Active} 
       />

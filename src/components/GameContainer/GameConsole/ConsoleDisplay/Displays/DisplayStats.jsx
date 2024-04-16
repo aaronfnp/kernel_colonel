@@ -1,11 +1,12 @@
 import React from 'react'
 
-function DisplayStats() {
+function DisplayStats({user}) {
   return (
     <div>
       <h4>Current Display: Stats</h4>
-      <h5>Total Cookies Earned:</h5>
-      <h5>Total Time Wasted:</h5>
+      <h5>Total Corn Earned: {user.totalScore}</h5>
+      {/* DO WE WANT THIS? */}
+      <h5>Total Time Wasted: 0, it's not wasted </h5>
     </div>
   )
 }

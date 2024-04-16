@@ -11,6 +11,8 @@ router.get('/loadLB', usersCtrl.loadLB);
 router.post('/', usersCtrl.create);
 router.post('/login', usersCtrl.login);
 router.put('/:userId/update-score', usersCtrl.updateScore);
+router.put('/:userId/update-info', usersCtrl.updateInfo);
+
 
 module.exports = router;
 

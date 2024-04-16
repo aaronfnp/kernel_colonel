@@ -17,10 +17,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  corn: {type: Number, ref: 'Corn.cornVal', default: 0},
-  score: { type: Number, ref: 'Corn.totalCornVal', default: 0 },
-  upgrades: [{ type: Schema.Types.ObjectId, ref: 'Upgrade' }]
-  
+  score: { type: Number, ref: 'Corn.totalCornVal', default: 0 }, // Using this as CURRENT $
+  totalScore: { type: Number, ref: 'Corn.totalCornVal', default: 0 }, // Using this as TOTAL
+  // THIS WILL BECOME A REFERENCE TO THE UPGRADES MODEL QUANTITY
+  upgrades: {type: Number, ref: 'Upgrade.quantity', default: 0}
 
 }, {
   timestamps: true,

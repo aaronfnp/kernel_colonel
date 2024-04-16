@@ -23,7 +23,7 @@ function DisplayLeaderBoard() {
       <div>
         {leaderBoard.map((user, idx) => (
           <>
-            <small key={user.id}>{user.name}: {user.score} </small>
+            <small key={user.id}>{user.name}: {user.totalScore} </small>
           </>
         ))}
       </div>
