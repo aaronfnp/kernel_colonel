@@ -1,10 +1,28 @@
 import React, {useState, useEffect, useRef} from 'react';
+import { upgradesIndex } from '../../../../utilities/upgrades-api';
+import StoreButton from '../StoreButtonList/StoreButton/StoreButton'
 
-function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isSell, buyModifier}) {
+function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier}) {
   const [passiveModifier, setPassiveModifier] = useState(0);
   // STARTING VAL BE SAME AS GAMEPAGE VAL FOR CornValMod_Active 
   const [activeModifier, setActiveModifier] = useState(1);
+  const [upgradesList, setUpgradesList] = useState([]);
   const timerRef = useRef();
+
+  // FETCHING ALL OF THE CURRENT UPGRADES
+  useEffect(() => {
+    const fetchUpgrades = async () => {
+      try {
+        const upgrades = await upgradesIndex();
+        setUpgradesList(upgrades);
+      } catch (error) {
+        console.error('Error fetching upgrades:', error);
+      }
+    };
+
+    fetchUpgrades();
+
+  }, []);
   
   // TIMER BASED CPS USE EFFECT
   useEffect(() => {
@@ -47,39 +65,30 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
     <div>
       <h3>StoreButtonList</h3>
       {/* CPS BUTTONS */}
-      <button onClick={() => {
-        if (cornVal >= (20 * buyModifier)) {
-          setCornVal(cornVal - (20* buyModifier));
-          addPassiveModifier(1 * buyModifier)
-        } else {
-          alert("Not enough corn!");
-        }
-        }}>+ 1 CPS | Cost 20</button>
-      <button onClick={() => {
-        if (cornVal >= (100 * buyModifier)) {
-          setCornVal(cornVal - (100* buyModifier));
-          addPassiveModifier(5 * buyModifier)
-        } else {
-          alert("Not enough corn!");
-        }
-        }}>+ 5 CPS | Cost 100</button>
-      <button onClick={() => {
-        if (cornVal >= (200 * buyModifier)) {
-          setCornVal(cornVal - (200 * buyModifier));
-          addPassiveModifier(10 * buyModifier)
-        } else {
-          alert("Not enough corn!");
-        }
-        }}>+ 10 CPS | Cost 200</button>
-      {/* CLICK MODIFIER BUTTONS */}
-      <button onClick={() => {
-        if (cornVal >= (10* buyModifier)) {
-          setCornVal(cornVal - (10* buyModifier));
-          addActiveModifier(1 * buyModifier)
-        } else {
-          alert("Not enough corn!");
-        }
-        }}>+ 1 per Click | Cost 10</button>
+      <div>
+        {upgradesList.map((upgrade, idx) => (
+                  <StoreButton 
+                  key={idx} 
+                  id={upgrade._id} 
+                  name={upgrade.name} 
+                  description={upgrade.description} 
+                  quantity={upgrade.quantity} 
+                  price={upgrade.price} 
+                  productionRate={upgrade.productionRate} 
+                  isPassive={upgrade.isPassive} 
+                  img={upgrade.img} 
+                  cornVal={cornVal}
+                  setCornVal={setCornVal}
+                  buyModifier={buyModifier}
+                  setActiveModifier={setActiveModifier}
+                  activeModifier={activeModifier}
+                  passiveModifier={passiveModifier}
+                  setPassiveModifier={setPassiveModifier}
+                  setCornValMod_Passive={setCornValMod_Passive}
+                  setCornValMod_Active={setCornValMod_Active}
+                  />
+              ))}
+        </div>
     </div>
   );
 }
