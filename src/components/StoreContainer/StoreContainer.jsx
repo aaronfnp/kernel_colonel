@@ -1,7 +1,8 @@
 import React from 'react'
 import Store from './Store/Store'
 
-function StoreContainer({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active}) {
+
+function StoreContainer({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, userQty, setUserQty}) {
   return (
     <div>
       <h1>StoreContainer</h1>
@@ -11,7 +12,10 @@ function StoreContainer({cornVal, setCornVal, totalCornVal, setTotalCornVal, set
       totalCornVal={totalCornVal}
       setTotalCornVal={setTotalCornVal}
       setCornValMod_Passive={setCornValMod_Passive}
-      setCornValMod_Active={setCornValMod_Active} />
+      setCornValMod_Active={setCornValMod_Active}
+      userQty={userQty}
+      setUserqty={setUserQty}
+      />
 
       {/* ICEBOX */}
       {/* <SpinWheel /> */}

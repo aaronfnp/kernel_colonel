@@ -18,7 +18,7 @@ const upgradesData = [
         price: 100,
         productionRate: 1,
         isPassive: false,
-        img: "fakelink",
+        img: "https://static1.squarespace.com/static/57098b7e9f726623e0c32ff6/57102251fb436d81dc54af43/571022d2fb436d81dc54b8c6/1460675282470/007-goldfinger-700x350.png?format=original",
       },
       {
         name: "Frying Pan",
@@ -45,7 +45,7 @@ const upgradesData = [
         price: 1100,
         productionRate: 8,
         isPassive: true,
-        img: "fakelink"
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoNUIDnfdC3IFW407mIWoXZ-6zlOGgpYaTIA&usqp=CAU"
       },
       {
         name: "Popcorn Party Cannon",
@@ -54,7 +54,7 @@ const upgradesData = [
         price: 12000,
         productionRate: 47,
         isPassive: true,
-        img: "fakelink"
+        img: "https://cdn-icons-png.flaticon.com/512/6659/6659603.png"
       },
       {
         name: "Popcorn Fountain",

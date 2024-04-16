@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import { upgradesIndex } from '../../../../utilities/upgrades-api';
 import StoreButton from '../StoreButtonList/StoreButton/StoreButton'
 
-function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier}) {
+function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier, userQty, setUserQty}) {
   const [passiveModifier, setPassiveModifier] = useState(0);
   // STARTING VAL BE SAME AS GAMEPAGE VAL FOR CornValMod_Active 
   const [activeModifier, setActiveModifier] = useState(1);
@@ -27,8 +27,14 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
   // TIMER BASED CPS USE EFFECT
   useEffect(() => {
     timerRef.current = setInterval(() => {
-      setCornVal(secs => secs + passiveModifier);
-      setTotalCornVal(secs => secs + passiveModifier);
+      setCornVal(secs => {
+        const newValue = secs + passiveModifier;
+        return parseFloat(newValue.toFixed(2));
+      });
+      setTotalCornVal(secs => {
+        const newValue = secs + passiveModifier;
+        return parseFloat(newValue.toFixed(2));
+      });
     }, 1000);
 
     return () => {
@@ -66,6 +72,8 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
                   setPassiveModifier={setPassiveModifier}
                   setCornValMod_Passive={setCornValMod_Passive}
                   setCornValMod_Active={setCornValMod_Active}
+                  userQty={userQty}
+                  setUserQty={setUserQty}
                   />
               ))}
         </div>

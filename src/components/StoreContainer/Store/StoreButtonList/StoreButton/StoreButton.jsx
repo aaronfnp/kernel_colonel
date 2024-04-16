@@ -4,9 +4,13 @@ function StoreButton(props) {
   const [quantity, setQuantity] = useState(props.quantity);
   const [price, setPrice] = useState(props.price);
   let modifierType = null;
-  let modifierBuySell = 1;
+  // let modifierBuySell = 1;
 
     // ADD A VIRTUAL INTO THIS OR MODEL?
+
+    // useEffect(() => {
+    //   setQuantity(props.userQty);
+    // }, [props.userQty]);
 
     if (props.isPassive) {
      modifierType = 'Per Second'
@@ -44,6 +48,8 @@ function StoreButton(props) {
   const setCPS = (newScoreModifier) => {
     props.setCornValMod_Passive(newScoreModifier);
   };
+
+ 
   
     return (
     <div>

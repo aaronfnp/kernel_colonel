@@ -9,6 +9,7 @@ module.exports = {
   updateScore,
   updateInfo,
   loadLB,
+  updateQuantity,
 };
 
 async function create(req, res) {
@@ -100,3 +101,24 @@ async function loadLB(req, res) {
     console.error('Error fetching leaderboard:', error);
     res.status(500).json({ error: 'Server error' });
   }}
+
+  async function updateQuantity(req, res) {
+    try {
+      const userId = req.params.userId;
+      const newQuantity = req.body.newQuantity;
+      const user = await User.findById(userId);
+
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+      user.upgrades = newQuantity;
+      console.log('quantity success', newQuantity)
+
+      await user.save();
+      res.json({ message: 'Score updated successfully', user });
+    } catch (error) {
+      console.error('Error updating score:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
