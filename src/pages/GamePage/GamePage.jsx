@@ -37,7 +37,7 @@ function GamePage({ user, setUser }) {
     try {
       // Update both score and totalScore
       await updateScore(user._id, cornVal, totalCornVal);
-  
+      
       // Update local state
       setCornVal(prevCornVal => {
         setUser(prevUser => ({
