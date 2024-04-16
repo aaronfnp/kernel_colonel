@@ -154,10 +154,11 @@ button[type="submit"] {
 }
 
 .gameContainer {
+  border: 1px solid orange;
   width: 50%;
   margin: 5%;
   background-color: #F67F00;
-  border-radius: 8%;
+  border-radius: 9%;
 }
 
 .storeContainer {
@@ -169,4 +170,8 @@ button[type="submit"] {
 
 .cornStats {
   padding: 10px;
+}
+
+.corn-click {
+  border: 1px solid orange;
 }
