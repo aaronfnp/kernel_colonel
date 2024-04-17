@@ -4,7 +4,7 @@
 
 **Kernel Colonel** is an incremental, clicker game where players earn "corn" (currency) by clicking and use their earnings to purchase upgrades that automate and increase corn production. Drawing inspiration from classics like "Cookie Clicker," Kernel Colonel offers engaging passive and active gameplay mechanics aimed at maximizing corn production to dominate the leaderboard.
 
-#### [Kernel Colonel](https://github.com/aaronfnp/kernel_colonel/edit/main/README.md) - Play Here
+#### [Kernel Colonel](https://kernelcolonel-363e070e95f0.herokuapp.com/) - Play Here
 
 ### Game Features
 
