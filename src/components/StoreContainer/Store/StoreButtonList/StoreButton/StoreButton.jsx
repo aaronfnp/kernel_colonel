@@ -11,18 +11,13 @@ function StoreButton(props) {
   let modifierType = props.isPassive ? 'Per Second' : 'On Click';
 
   const handleBuy = () => {
-    if ((props.cornVal >= props.price * props.buyModifier) && props.isBuying) {
+    if (((props.cornVal >= props.price * props.buyModifier) && props.isBuying) || (qty >= 1 && !props.isBuying)) {
       setQty(prevQty => prevQty + (1 * props.buySellModifier));
       props.setCornVal(props.cornVal - (props.price * props.buySellModifier * props.buyModifier));
       if (props.isPassive) addPassiveModifier(props.productionRate * props.buyModifier * props.buySellModifier);
       else addActiveModifier(props.productionRate * props.buyModifier * props.buySellModifier);
     }
-    else if (qty >= 1 && !props.isBuying) {
-      setQty(prevQty => prevQty + (1 * props.buySellModifier));
-      props.setCornVal(props.cornVal - (props.price * props.buySellModifier * props.buyModifier));
-      if (props.isPassive) addPassiveModifier(props.productionRate * props.buyModifier * props.buySellModifier);
-      else addActiveModifier(props.productionRate * props.buyModifier * props.buySellModifier);
-    } else {
+    else {
       alert('Not enough corn!');
     }
   };
