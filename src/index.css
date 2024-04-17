@@ -159,7 +159,7 @@ button[type="submit"] {
   background-color: rgba(246, 127, 0, 0.8); /* Orange with 80% opacity */
   border-radius: 5%;
   width: 50%;
-  height: 100vh;
+  height: 80vh; /* Set container height to 80% of viewport height */
 }
 
 .storeContainer {
@@ -167,7 +167,7 @@ button[type="submit"] {
   background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
   border-radius: 5%;
   width: 50%;
-  height: 100vh;
+  height: 80vh; /* Set container height to 80% of viewport height */
   overflow-y: auto; /* Enable vertical scroll if content overflows */
   scrollbar-color: #879d1f transparent; /* Adjust scrollbar color */
 }
