@@ -42,8 +42,10 @@ function StoreButtonList({ cornVal, setCornVal, totalCornVal, setTotalCornVal, s
       setCornVal(cornVal - upgrade.price * buyModifier);
       if (upgrade.isPassive) {
         setCornValMod_Passive(prevModifier => prevModifier + upgrade.productionRate * buyModifier);
+        setPassiveModifier(prevModifier => prevModifier + upgrade.productionRate * buyModifier);
       } else {
         setCornValMod_Active(prevModifier => prevModifier + upgrade.productionRate * buyModifier);
+        setActiveModifier(prevModifier => prevModifier + upgrade.productionRate * buyModifier);
       }
     } else {
       alert('Not enough corn!');
@@ -52,7 +54,7 @@ function StoreButtonList({ cornVal, setCornVal, totalCornVal, setTotalCornVal, s
 
   return (
     <div className="storeButtonList">
-      <h3>Upgrades</h3>
+      <h3>StoreButtonList</h3>
       <div className="storeButtonListContainer">
         {upgradesList.map((upgrade, idx) => (
           <Card key={idx} className="upgradeCard">
