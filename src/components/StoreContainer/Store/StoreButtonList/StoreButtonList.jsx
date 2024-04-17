@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { upgradesIndex } from '../../../../utilities/upgrades-api';
 import StoreButton from '../StoreButtonList/StoreButton/StoreButton'
+import "./StoreButtonList.css"
 
 function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier, buySellModifier}) {
   const [passiveModifier, setPassiveModifier] = useState(0);
@@ -43,7 +44,7 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
 
     // WILL CHANGE THIS TO AN ARRAY OF UPGRADES, INTO A StoreButton COMPONENT
     <div>
-      <h3>StoreButtonList</h3>
+      <h3>Upgrades</h3>
       {/* CPS BUTTONS */}
       <div>
         {upgradesList.map((upgrade, idx) => (

@@ -23,7 +23,7 @@ function DisplayLeaderBoard() {
       <h4>LeaderBoard</h4>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         {leaderBoard.map((user, idx) => (
-          <Grid item xs={6} key={user.id}>
+          <Grid item xs={6} key={user.id || idx}> {/* Use user.id as key, fallback to index if id is missing */}
             <Paper sx={{ p: 1, textAlign: 'center', color: 'text.secondary', bgcolor: 'background.paper' }}>
               {idx + 1}. {user.name}: {user.totalScore}
             </Paper>
