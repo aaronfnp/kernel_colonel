@@ -29,8 +29,8 @@ function GameInterface({ cornVal, setCornVal, totalCornVal, setTotalCornVal, cor
   return (
     <div>
       {/* Chips for displaying values */}
-      <Chip className='customChip' label={`Total Corn = ${cornVal}`} /><br></br>
-      <Chip className='customChip' label={`Corn Per Second = ${cornValMod_Passive}`} /><br></br>
+      <Chip className='customChip' label={`Total Corn = ${cornVal.toFixed(1)}`} /><br></br>
+      <Chip className='customChip' label={`Corn Per Second = ${cornValMod_Passive.toFixed(1)}`} /><br></br>
       <Chip className='customChip' label={`Corn Per Click = ${cornValMod_Active}`} /><br></br>
       
       {/* Container for popcorn animation */}

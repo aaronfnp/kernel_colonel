@@ -46,7 +46,7 @@ function StoreButton(props) {
 
   const addPassiveModifier = (modifierValue) => {
     props.setPassiveModifier(prevModifier => prevModifier + modifierValue);
-    setCPS((props.passiveModifier + modifierValue).toFixed(1)); 
+    setCPS((props.passiveModifier + modifierValue)); 
   };
 
   const setCPS = (newScoreModifier) => {
@@ -63,7 +63,7 @@ function StoreButton(props) {
           <div className="upgradeDetails">
             <Typography variant="h6" component="h2">{props.name}</Typography>
             <Typography variant="body2" component="p">{props.description}</Typography>
-            <Typography variant="body2" component="p">Cost: {currentPrice}</Typography>
+            <Typography variant="body2" component="p">Cost: {currentPrice * props.buyModifier}</Typography>
             <Typography variant="body2" component="p">+{props.productionRate} {modifierType}</Typography>
             <Typography variant="body2" component="p">Quantity: {qty}</Typography>
           </div>
