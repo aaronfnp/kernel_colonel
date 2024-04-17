@@ -43,7 +43,7 @@
 ### Game Images
 
 #### Game Interface
-[![Game Interface](public/game-interface.png)](https://kernelcolonel-363e070e95f0.herokuapp.com/)
+[![Game Interface](public/game-interface.png)]
 
 ## Resources
 
