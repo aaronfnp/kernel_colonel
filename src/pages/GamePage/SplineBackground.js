@@ -12,7 +12,19 @@ const SplineBackground = () => {
     };
   }, []);
 
-  return <canvas id="canvas3d" style={{ position: 'absolute', top: 0, left: 0, zIndex: -1 }} />;
+  return (
+    <canvas
+      id="canvas3d"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: -1,
+        width: '100%', // Take up full width of the viewport
+        height: '100vh', // Take up full height of the viewport
+      }}
+    />
+  );
 };
 
 export default SplineBackground;

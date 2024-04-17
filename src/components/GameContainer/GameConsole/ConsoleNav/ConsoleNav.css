@@ -1,8 +1,11 @@
-/* Assuming ToggleButtonGroup and ToggleButton are styled components */
-.ToggleButtonGroup-root {
-    width: 100%; /* Set the width of the ToggleButtonGroup to 100% */
-  }
-  
-  .ToggleButton-root {
-    width: 100%; /* Set the width of the ToggleButton to 100% */
-  }
+/* ConsoleNav.css */
+
+/* Customize the color of the ToggleButtons */
+.MuiToggleButton-root {
+  color: #fdf5c8; /* Change to the desired button color */
+}
+
+/* Customize the animation color */
+.MuiToggleButtonGroup-grouped.Mui-selected {
+  background-color: #fdf5c8; /* Change to the desired animation color */
+}

@@ -1,14 +1,17 @@
 .custom-button {
-    background-image: url('KCnoBG.png');
-    background-size: cover; /* Adjust the image size */
-    background-repeat: no-repeat; /* Ensure the image doesn't repeat */
-    background-position: center;
-    width: 450px; /* Set width */
-    height: 190px; /* Set height */
-    border: none; /* Remove default button border */
-    /* Add any other styles you need */
-  }
-  
+  background-image: url('finish.png');
+  background-size: cover; /* Adjust the image size */
+  background-repeat: no-repeat; /* Ensure the image doesn't repeat */
+  background-position: center;
+  width: 450px; /* Set width */
+  height: 550px; /* Set height */
+  border: none; /* Remove default button border */
+  /* margin-top: 50px; */
+  /* margin-bottom: 70px; */
+  background-color: rgba(255, 255, 255, 0); /* White with 50% opacity */
+  /* Add any other styles you need */
+}
+
   /* Style for popcorn container */
 .popcorn-container {
   position: relative;
