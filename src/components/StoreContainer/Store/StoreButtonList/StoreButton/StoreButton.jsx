@@ -21,7 +21,7 @@ function StoreButton(props) {
 
   const handleBuy = () => {
     if (((props.cornVal >= currentPrice * props.buyModifier) && props.isBuying) || (qty >= 1 && !props.isBuying)) {
-      setQty(prevQty => prevQty + (1 * props.buySellModifier));
+      setQty(prevQty => prevQty + (1 * props.buyModifier * props.buySellModifier));
       props.setCornVal(props.cornVal - (currentPrice * props.buySellModifier * props.buyModifier));
       if (props.isPassive) {
         addPassiveModifier(props.productionRate * props.buyModifier * props.buySellModifier);

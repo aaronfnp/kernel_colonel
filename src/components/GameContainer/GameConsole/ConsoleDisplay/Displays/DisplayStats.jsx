@@ -23,7 +23,7 @@ function DisplayStats({ user }) {
           Stats
         </Typography>
         <Typography variant="h5" component="div">
-          Total Corn Earned: {user.totalScore}
+          Total Corn Earned: {user.totalScore.toFixed(1)}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           Total Time Wasted: 0, it's not wasted

@@ -25,7 +25,7 @@ function DisplayLeaderBoard() {
         {leaderBoard.map((user, idx) => (
           <Grid item xs={6} key={user.id || idx}> {/* Use user.id as key, fallback to index if id is missing */}
             <Paper sx={{ p: 1, textAlign: 'center', color: 'text.secondary', bgcolor: 'background.paper' }}>
-              {idx + 1}. {user.name}: {user.totalScore}
+              {idx + 1}. {user.name}: {user.totalScore.toFixed(0)}
             </Paper>
           </Grid>
         ))}

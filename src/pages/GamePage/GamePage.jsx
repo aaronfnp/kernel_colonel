@@ -12,28 +12,33 @@ function GamePage({ user, setUser }) {
   const [cornValMod_Active, setCornValMod_Active] = useState(1);
 
   useEffect(() => {
-    // Initialize cornVal to the user's score on mount
-    setCornVal(user.score);
+    handleSaveScore(cornVal, totalCornVal);
+  }, [cornVal, totalCornVal]);
+
+  // useEffect(() => {
+  //   // Initialize cornVal to the user's score on mount
+  //   // setCornVal(user.score);
+  //   // console.log("SetCornVal IN USEEFFECT", user.score)
     
-    // Save score every 10 seconds
-    const saveInterval = setInterval(() => {
-      handleSaveScore();
-    }, 10000);
+  //   // Save score every 10 seconds
+  //   const saveInterval = setInterval(() => {
+  //     handleSaveScore();
+  //   }, 10000);
 
-    return () => clearInterval(saveInterval);
+  //   return () => clearInterval(saveInterval);
 
-  }, [user.score]);
+  // }, [user.score]);
 
-  async function handleSaveScore() {
+  async function handleSaveScore(updatedCornVal, updatedTotalCornVal) {
     try {
       // Update score and totalScore
-      await updateScore(user._id, cornVal, totalCornVal);
+      await updateScore(user._id, updatedCornVal, updatedTotalCornVal);
       
       // Update user state
       setUser(prevUser => ({
         ...prevUser,
-        score: cornVal,
-        totalScore: totalCornVal
+        score: updatedCornVal,
+        totalScore: updatedTotalCornVal
       }));
     } catch (error) {
       console.error('Error updating score:', error);

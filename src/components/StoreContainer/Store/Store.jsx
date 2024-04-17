@@ -21,7 +21,6 @@ function Store({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMo
       setBuySellModifier(1)
     }
   }, [isBuying]);
-  // ^^^^^^^^^
 
   return (
     <div>
