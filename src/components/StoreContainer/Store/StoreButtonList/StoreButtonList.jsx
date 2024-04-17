@@ -1,15 +1,18 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { upgradesIndex } from '../../../../utilities/upgrades-api';
-import StoreButton from '../StoreButtonList/StoreButton/StoreButton'
+import StoreButton from '../StoreButtonList/StoreButton/StoreButton';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button'; // Import Button from MUI
+import './StoreButtonList.css';
 
-function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier}) {
+function StoreButtonList({ cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier }) {
   const [passiveModifier, setPassiveModifier] = useState(0);
-  // STARTING VAL BE SAME AS GAMEPAGE VAL FOR CornValMod_Active 
   const [activeModifier, setActiveModifier] = useState(1);
   const [upgradesList, setUpgradesList] = useState([]);
   const timerRef = useRef();
 
-  // FETCHING ALL OF THE CURRENT UPGRADES
   useEffect(() => {
     const fetchUpgrades = async () => {
       try {
@@ -21,10 +24,8 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
     };
 
     fetchUpgrades();
-
   }, []);
-  
-  // TIMER BASED CPS USE EFFECT
+
   useEffect(() => {
     timerRef.current = setInterval(() => {
       setCornVal(secs => secs + passiveModifier);
@@ -36,39 +37,42 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
     };
   }, [passiveModifier, setCornVal]);
 
-
-  
+  const handleBuy = (upgrade) => {
+    if (cornVal >= upgrade.price * buyModifier) {
+      setCornVal(cornVal - upgrade.price * buyModifier);
+      if (upgrade.isPassive) {
+        setCornValMod_Passive(prevModifier => prevModifier + upgrade.productionRate * buyModifier);
+      } else {
+        setCornValMod_Active(prevModifier => prevModifier + upgrade.productionRate * buyModifier);
+      }
+    } else {
+      alert('Not enough corn!');
+    }
+  };
 
   return (
-
-    // WILL CHANGE THIS TO AN ARRAY OF UPGRADES, INTO A StoreButton COMPONENT
-    <div>
+    <div className="storeButtonList">
       <h3>StoreButtonList</h3>
-      {/* CPS BUTTONS */}
-      <div>
+      <div className="storeButtonListContainer">
         {upgradesList.map((upgrade, idx) => (
-                  <StoreButton 
-                  key={idx} 
-                  id={upgrade._id} 
-                  name={upgrade.name} 
-                  description={upgrade.description} 
-                  quantity={upgrade.quantity} 
-                  price={upgrade.price} 
-                  productionRate={upgrade.productionRate} 
-                  isPassive={upgrade.isPassive} 
-                  img={upgrade.img} 
-                  cornVal={cornVal}
-                  setCornVal={setCornVal}
-                  buyModifier={buyModifier}
-                  setActiveModifier={setActiveModifier}
-                  activeModifier={activeModifier}
-                  passiveModifier={passiveModifier}
-                  setPassiveModifier={setPassiveModifier}
-                  setCornValMod_Passive={setCornValMod_Passive}
-                  setCornValMod_Active={setCornValMod_Active}
-                  />
-              ))}
-        </div>
+          <Card key={idx} className="upgradeCard">
+            <CardContent className="upgradeCardContent">
+              <div className="upgradeImage">
+                <img src={upgrade.img} alt={upgrade.name} />
+              </div>
+              <div className="upgradeDetails">
+                <Typography variant="h6" component="h2">{upgrade.name}</Typography>
+                <Typography variant="body2" component="p">{upgrade.description}</Typography>
+                <Typography variant="body2" component="p">Cost: {upgrade.price}</Typography>
+                <Typography variant="body2" component="p">Production Rate: {upgrade.productionRate}</Typography>
+              </div>
+              <div className="upgradeActions">
+                <Button variant="contained" className="buyButton" onClick={() => handleBuy(upgrade)}>Buy</Button>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }

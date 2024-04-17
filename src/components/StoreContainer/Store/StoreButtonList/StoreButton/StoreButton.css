@@ -1,0 +1,38 @@
+.storeButton {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .storeButton img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .storeButtonContent {
+    flex: 1;
+    padding: 0 10px;
+  }
+  
+  .storeButtonContent h6 {
+    margin: 0;
+  }
+  
+  .storeButtonContent p {
+    margin: 5px 0;
+  }
+  
+  .storeButtonActions {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .storeButtonActions button {
+    margin-top: 5px;
+  }
+  

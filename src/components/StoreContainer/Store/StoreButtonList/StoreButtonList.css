@@ -1,0 +1,59 @@
+/* StoreButtonList.css */
+
+.storeButtonListContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .upgradeCard {
+    width: 950px; /* Adjust card width as needed */
+    height: 200px; /* Set a fixed height for all cards */
+    margin-bottom: 20px; /* Adjust margin between cards */
+  }
+  
+  .upgradeCardContent {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .upgradeImage {
+    flex: 1;
+  }
+  
+  .upgradeImage img {
+    width: 75%; /* Ensure all images have the same width */
+    height: 75%; /* Ensure all images have the same height */
+    object-fit: cover; /* Preserve aspect ratio and cover container */
+  }
+  
+  .upgradeDetails {
+    flex: 2;
+    padding: 0 20px; /* Add padding to separate text from edges */
+  }
+  
+  .upgradeDetails h2 {
+    font-size: 24px; /* Increase font size for upgrade name */
+    margin-bottom: 10px; /* Add space between upgrade name and description */
+  }
+  
+  .upgradeDetails p {
+    margin-bottom: 8px; /* Add space between lines of text */
+  }
+  
+  .upgradeActions {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px; /* Add padding to align buttons with text */
+  }
+  
+  .buyButton {
+    margin-left: 10px; /* Add margin to separate button from text */
+    height: 30px;
+    background-color: green; /* Change button background color */
+    color: white; /* Change button text color */
+  }
+  
