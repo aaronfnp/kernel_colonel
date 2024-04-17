@@ -53,6 +53,8 @@ async function login(req, res) {
       const newScore = req.body.newScore;
       const newTotalScore = req.body.newTotalScore
       const user = await User.findById(userId);
+      console.log({userId}, "updated to", {newTotalScore})
+      console.log("user score updated")
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
