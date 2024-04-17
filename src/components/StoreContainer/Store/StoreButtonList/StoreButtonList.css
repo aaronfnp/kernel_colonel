@@ -6,7 +6,7 @@
   
   .upgradeCard {
     width: calc(70vh - 70px); /* Set card width to half of viewport height minus 50 pixels */
-    height: calc(25vh - 20px); /* Set card height relative to viewport height */
+    height: calc(15vh - 15px); /* Set card height relative to viewport height */
     margin-bottom: 20px; /* Adjust margin between cards */
   }
   
@@ -14,6 +14,8 @@
     display: flex;
     align-items: center;
     height: 100%;
+    overflow-x: hidden; /* Hide horizontal overflow */
+    overflow-y: auto; /* Enable vertical scroll if content overflows */
   }
   
   .upgradeImage {
@@ -53,5 +55,16 @@
     height: 30px;
     background-color: green; /* Change button background color */
     color: white; /* Change button text color */
+  }
+  
+  /* Media query for stacking upgrades */
+  @media screen and (max-width: 768px) {
+    .storeButtonListContainer {
+      align-items: flex-start; /* Align upgrades to the top */
+    }
+  
+    .upgradeCard {
+      width: 100%; /* Set card width to 100% of the viewport width */
+    }
   }
   
