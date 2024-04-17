@@ -5,7 +5,7 @@ import "./Store.css";
 
 function Store({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active}) {
   const [buyModifier, setBuyModifier] = useState(1);
-  const [isSell, setIsSell] = useState(false);
+  const [buySellModifier, setBuySellModifier] = useState(1);
   const [isBuying, setIsBuying] = useState(true);
   const [buySellText, setBuySellText] = useState("Buying");
 
@@ -13,10 +13,12 @@ function Store({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMo
     if (!isBuying) {
       setIsBuying(false);
       setBuySellText("Selling");
+      setBuySellModifier(-1)
     }
     if (isBuying) {
       setIsBuying(true);
       setBuySellText("Buying");
+      setBuySellModifier(1)
     }
   }, [isBuying]);
   // ^^^^^^^^^
@@ -35,6 +37,7 @@ function Store({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMo
       setCornValMod_Active={setCornValMod_Active} 
       buyModifier={buyModifier}
       isBuying={isBuying}
+      buySellModifier={buySellModifier}
       />
     </div>
   )
