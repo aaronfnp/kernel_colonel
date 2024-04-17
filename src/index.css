@@ -155,23 +155,34 @@ button[type="submit"] {
 
 .gameContainer {
   border: 1px solid orange;
-  width: 50%;
   margin: 5%;
-  background-color: #F67F00;
-  border-radius: 9%;
+  background-color: rgba(246, 127, 0, 0.8); /* Orange with 80% opacity */
+  border-radius: 5%;
+  width: 50%;
+  height: 100vh;
 }
 
 .storeContainer {
-  width: 50%;
   margin: 5%;
-  background-color: white;
-  border-radius: 10%;
+  background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
+  border-radius: 5%;
+  width: 50%;
+  height: 100vh;
+  overflow-y: auto; /* Enable vertical scroll if content overflows */
+  scrollbar-color: #879d1f transparent; /* Adjust scrollbar color */
 }
+
+
 
 .cornStats {
   padding: 10px;
 }
 
-.corn-click {
+/* .corn-click {
   border: 1px solid orange;
+} */
+
+.storeButton {
+  margin-bottom: 10px;
+  width: 100%;
 }

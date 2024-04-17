@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import GameContainer from '../../components/GameContainer/GameContainer';
 import StoreContainer from '../../components/StoreContainer/StoreContainer';
 import './GamePage.css';
-import { updateScore, updateUserQty } from '../../utilities/users-api';
+import { updateScore } from '../../utilities/users-api';
 import SplineBackground from './SplineBackground'; // Import the SplineBackground component
 import { updateTypeQueryNode } from 'typescript';
 
@@ -11,8 +11,6 @@ function GamePage({ user, setUser }) {
   const [totalCornVal, setTotalCornVal] = useState(user.totalScore);
   const [cornValMod_Passive, setCornValMod_Passive] = useState(0);
   const [cornValMod_Active, setCornValMod_Active] = useState(1);
-  const [userQty, setUserQty] = useState(user.upgrades);
-  const [quantity, setQuantity] = useState(props.quantity);
   
 
   // Initialize cornVal to the user's score on mount
@@ -30,7 +28,6 @@ function GamePage({ user, setUser }) {
     // NEED TO CHANGE TO IF VALUE IS !== 
     const saveInterval = setInterval(() => {
       handleSaveScore();
-      handleUserQty();
     }, 10000);
 
     return () => clearInterval(saveInterval);
@@ -65,29 +62,14 @@ function GamePage({ user, setUser }) {
       console.error('Error updating score:', error);
     }}
 
-    async function handleUserQty() {
-      try {
-        await updateUserQty(user._id, userQty);
-  
-        setUserQty(prevUserQty => {
-          setUser(prevUser => ({
-            ...prevUser,
-            quantity: prevUserQty
-          }));
-          console.log(`Updated quantity to ${prevUserQty}`);
-          return prevUserQty;
-        });
-      } catch (error) {
-        console.error('Error updating quantity:', error);
-      }
-    }
+
     
     
 
   return (
     <div className='GamePage'>
       <SplineBackground /> {/* Include the SplineBackground component */}
-      <h1>GamePage</h1>
+      <h1 className='Kernel'>Kernel Colonel</h1>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div className='gameContainer'>
           <GameContainer 
@@ -109,14 +91,13 @@ function GamePage({ user, setUser }) {
             setTotalCornVal={setTotalCornVal}
             setCornValMod_Passive={setCornValMod_Passive}
             setCornValMod_Active={setCornValMod_Active}
-            userQty={userQty}
-            setUserQty={setUserQty}
+            user={user}
+            setUser={setUser}
               />
         </div>
       </div>
       <button onClick={[
         handleSaveScore,
-        handleUserQty
         ]}>Save</button>
     </div>
   );

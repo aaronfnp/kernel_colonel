@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import { upgradesIndex } from '../../../../utilities/upgrades-api';
 import StoreButton from '../StoreButtonList/StoreButton/StoreButton'
 
-function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier, userQty, setUserQty}) {
+function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier, quantity, user, setUser}) {
   const [passiveModifier, setPassiveModifier] = useState(0);
   // STARTING VAL BE SAME AS GAMEPAGE VAL FOR CornValMod_Active 
   const [activeModifier, setActiveModifier] = useState(1);
@@ -43,6 +43,8 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
   }, [passiveModifier, setCornVal]);
 
 
+
+
   
 
   return (
@@ -72,8 +74,8 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
                   setPassiveModifier={setPassiveModifier}
                   setCornValMod_Passive={setCornValMod_Passive}
                   setCornValMod_Active={setCornValMod_Active}
-                  userQty={userQty}
-                  setUserQty={setUserQty}
+                  user={user}
+                  setUser={setUser}
                   />
               ))}
         </div>

@@ -18,7 +18,7 @@ const upgradesData = [
         price: 100,
         productionRate: 1,
         isPassive: false,
-        img: "https://static1.squarespace.com/static/57098b7e9f726623e0c32ff6/57102251fb436d81dc54af43/571022d2fb436d81dc54b8c6/1460675282470/007-goldfinger-700x350.png?format=original",
+        img: "https://static1.squarespace.com/static/57098b7e9f726623e0c32ff6/57102251fb436d81dc54af43[…]/1460675282470/007-goldfinger-700x350.png?format=original",
       },
       {
         name: "Frying Pan",
@@ -63,7 +63,7 @@ const upgradesData = [
         price: 130000,
         productionRate: 260,
         isPassive: true,
-        img: "fakelink"
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_fpMrYW7zHBenAPzPIOeeOb3_ZHo9GUtHPQ&usqp=CAUpopcorn"
       },
       {
         name: "Popcorn Popper Platoon",
@@ -72,7 +72,7 @@ const upgradesData = [
         price: 1400000,
         productionRate: 1400,
         isPassive: true,
-        img: "fakelink"
+        img: "https://static.thenounproject.com/png/4837570-200.png"
       },
       {
         name: "THE FACTORY",
@@ -81,7 +81,7 @@ const upgradesData = [
         price: 20000000,
         productionRate: 7800,
         isPassive: true,
-        img: "fakelink"
+        img: "https://cdn-icons-png.flaticon.com/512/3256/3256216.png"
       },
 ];
 

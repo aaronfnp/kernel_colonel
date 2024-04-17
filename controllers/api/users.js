@@ -105,7 +105,7 @@ async function loadLB(req, res) {
   async function updateQuantity(req, res) {
     try {
       const userId = req.params.userId;
-      const newQuantity = req.body.newQuantity;
+      const newQuantity = req.body.quantity;
       const user = await User.findById(userId);
 
       if (!user) {

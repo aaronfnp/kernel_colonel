@@ -27,5 +27,5 @@ export function loadLB() {
 }
 
 export function updateUserQty(userId, newQuantity) {
-  return sendRequest(`${BASE_URL}/${userId}/update-quantity`, 'PUT', {quanity: newQuantity})
+  return sendRequest(`${BASE_URL}/${userId}/update-quantity`, 'PUT', {quantity: newQuantity})
 }

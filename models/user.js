@@ -4,6 +4,11 @@ const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 6;
 
+const userUpgradeSchema = new Schema({
+  upgrade: { type: Schema.Types.ObjectId, ref: 'Upgrade' }, 
+  quantity:{ type: Schema.Types.ObjectId, ref: 'Upgrade.quantity'} 
+});
+
 const userSchema = new Schema({
   name: {type: String, required: true},
   email: {
@@ -20,7 +25,7 @@ const userSchema = new Schema({
   score: { type: Number, ref: 'Corn.totalCornVal', default: 0 }, // Using this as CURRENT $
   totalScore: { type: Number, ref: 'Corn.totalCornVal', default: 0 }, // Using this as TOTAL
   // THIS WILL BECOME A REFERENCE TO THE UPGRADES MODEL QUANTITY
-  upgrades: {type: Number, ref: 'Upgrade.quantity', default: 0}
+  upgrades: [userUpgradeSchema.schema]
 
 }, {
   timestamps: true,

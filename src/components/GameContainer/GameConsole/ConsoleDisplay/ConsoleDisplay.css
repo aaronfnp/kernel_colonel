@@ -1,5 +1,7 @@
 .console-display{
-    height: 200px;
+    /* height: 356px; */
     border: 7px solid orange;
-    /* border-radius: 20px; */
+    border-radius: 20px;
+    font-size: 28px;
+    background-color: #879d1f;
 }
