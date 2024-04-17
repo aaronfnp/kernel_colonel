@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-function StoreButton(props) {
-=======
 import React, { useState } from 'react';
 import { updateUserQty } from '../../../../../utilities/users-api';
 
@@ -11,7 +6,6 @@ function StoreButton(props) {
   const [price, setPrice] = useState(props.price);
   const [usrQty, setUserQty] = useState();
 
->>>>>>> 56b22d5b0f2078b19b9b376fab2b247d38bb4e7e
   let modifierType = null;
   // let modifierBuySell = 1;
 
@@ -86,23 +80,8 @@ function StoreButton(props) {
   
     return (
     <div>
-<<<<<<< HEAD
-      <button onClick={() => {
-        if (props.cornVal >= (props.price * props.buyModifier)) {
-          props.setCornVal(props.cornVal - (props.price * props.buyModifier));
-          if (props.isPassive) addPassiveModifier(props.productionRate * props.buyModifier);
-          else if (!props.isPassive) addActiveModifier(props.productionRate * props.buyModifier);
-          
-        } else {
-            // THIS WILL BE CHANGED TO A NON-ALERT
-          alert("Not enough corn!");
-        }
-        }}>
-          {props.name}
-=======
      <button onClick={[handleBuy, handleUserQty]}>
           {props.name} x{quantity}
->>>>>>> 56b22d5b0f2078b19b9b376fab2b247d38bb4e7e
           <br></br>
           <small>{props.description}</small>
           <br></br>

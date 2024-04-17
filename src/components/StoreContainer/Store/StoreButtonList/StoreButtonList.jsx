@@ -43,17 +43,9 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
   }, [passiveModifier, setCornVal]);
 
 
-<<<<<<< HEAD
-  // ACTIVE (CLICK) MODIFIER FUNCTION USED BY BUTTONS, SETS STATES ON GAMEPAGE
-  const addActiveModifier = (modifierValue) => {
-    setActiveModifier(prevModifier => prevModifier + modifierValue);
-    setClickMod(activeModifier + modifierValue); 
-  };
-=======
 
 
   
->>>>>>> 56b22d5b0f2078b19b9b376fab2b247d38bb4e7e
 
   // CALLED BY ACTIVE MODIFIER FUNCTION
   const setClickMod = (newScoreModifier) => {
