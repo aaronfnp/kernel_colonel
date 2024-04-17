@@ -2,10 +2,21 @@
 
 /* Customize the color of the ToggleButtons */
 .MuiToggleButton-root {
-  color: #fdf5c8; /* Change to the desired button color */
+  color: #879d1f; /* Change to the desired button color */
+  background-color: #879d1f;
+  padding-bottom: 200px;
 }
 
 /* Customize the animation color */
 .MuiToggleButtonGroup-grouped.Mui-selected {
-  background-color: #fdf5c8; /* Change to the desired animation color */
+  background-color: #879d1f; /* Change to the desired animation color */
+}
+
+/* ConsoleNav.css */
+
+.consoleNav {
+  width: 100%; /* Make the nav bar span the entire width */
+  max-width: 300px; /* Limit the maximum width to prevent it from overflowing */
+  margin: 0 auto; /* Center the nav bar horizontally */
+  padding-bottom: 10%;
 }

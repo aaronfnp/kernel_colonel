@@ -47,3 +47,16 @@
       transform: translateX(-50%) scale(1); /* Restore to original size */
     }
   }
+
+  .cornStats {
+    width: 250px;
+    height: 175px;
+  }
+
+  /* GameInterface.css */
+
+/* Custom styles for chips */
+.customChip {
+  font-size: 18px;
+  padding: 10px;
+}

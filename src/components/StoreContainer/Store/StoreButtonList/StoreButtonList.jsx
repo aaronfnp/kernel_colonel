@@ -52,7 +52,7 @@ function StoreButtonList({ cornVal, setCornVal, totalCornVal, setTotalCornVal, s
 
   return (
     <div className="storeButtonList">
-      <h3>StoreButtonList</h3>
+      <h3>Upgrades</h3>
       <div className="storeButtonListContainer">
         {upgradesList.map((upgrade, idx) => (
           <Card key={idx} className="upgradeCard">

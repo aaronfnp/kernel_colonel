@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import StoreBar from './StoreBar/StoreBar'
 import StoreButtonList from './StoreButtonList/StoreButtonList'
+import "./Store.css";
 
 function Store({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active}) {
   const [buyModifier, setBuyModifier] = useState(1);
@@ -22,7 +23,7 @@ function Store({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMo
 
   return (
     <div>
-      <h2>Store</h2>
+      <h2 className='store'>Store</h2>
       <StoreBar setIsBuying={setIsBuying} setBuyModifier={setBuyModifier} />
       <h2>Currently {buySellText} at x{buyModifier}</h2>
       <StoreButtonList 
