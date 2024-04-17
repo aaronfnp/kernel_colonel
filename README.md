@@ -45,12 +45,6 @@
 #### Game Interface
 [![Game Interface](public/game-interface.png)](https://kernelcolonel-363e070e95f0.herokuapp.com/)
 
-#### Game Statistics
-[![Game Statistics](public/stats.png)](https://kernelcolonel-363e070e95f0.herokuapp.com/stats)
-
-#### Leaderboard
-[![Leaderboard](public/leaderboard.png)](https://kernelcolonel-363e070e95f0.herokuapp.com/leaderboard)
-
 ## Resources
 
 For planning and collaboration, we use the following tools:
