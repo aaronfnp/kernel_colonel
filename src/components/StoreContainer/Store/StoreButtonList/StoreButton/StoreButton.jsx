@@ -7,15 +7,28 @@ import Button from '@mui/material/Button';
 
 function StoreButton(props) {
   const [qty, setQty] = useState(0);
+  const [currentPrice, setCurrentPrice] = useState(props.price)
 
   let modifierType = props.isPassive ? 'Per Second' : 'On Click';
 
+  const calculatePassivePrice = () => {
+    return Math.ceil(props.price * Math.pow(1.15, qty + 1));
+  };
+
+  const calculateActivePrice = () => {
+    return Math.ceil(props.price * Math.pow(5, qty + 1));
+  }
+
   const handleBuy = () => {
-    if (((props.cornVal >= props.price * props.buyModifier) && props.isBuying) || (qty >= 1 && !props.isBuying)) {
+    if (((props.cornVal >= currentPrice * props.buyModifier) && props.isBuying) || (qty >= 1 && !props.isBuying)) {
       setQty(prevQty => prevQty + (1 * props.buySellModifier));
-      props.setCornVal(props.cornVal - (props.price * props.buySellModifier * props.buyModifier));
-      if (props.isPassive) addPassiveModifier(props.productionRate * props.buyModifier * props.buySellModifier);
-      else addActiveModifier(props.productionRate * props.buyModifier * props.buySellModifier);
+      props.setCornVal(props.cornVal - (currentPrice * props.buySellModifier * props.buyModifier));
+      if (props.isPassive) {
+        addPassiveModifier(props.productionRate * props.buyModifier * props.buySellModifier);
+        setCurrentPrice(calculatePassivePrice())}
+      else { 
+        addActiveModifier(props.productionRate * props.buyModifier * props.buySellModifier);
+        setCurrentPrice(calculateActivePrice())}
     }
     else {
       alert('Not enough corn!');
@@ -33,7 +46,7 @@ function StoreButton(props) {
 
   const addPassiveModifier = (modifierValue) => {
     props.setPassiveModifier(prevModifier => prevModifier + modifierValue);
-    setCPS(props.passiveModifier + modifierValue); 
+    setCPS((props.passiveModifier + modifierValue).toFixed(1)); 
   };
 
   const setCPS = (newScoreModifier) => {
@@ -50,8 +63,8 @@ function StoreButton(props) {
           <div className="upgradeDetails">
             <Typography variant="h6" component="h2">{props.name}</Typography>
             <Typography variant="body2" component="p">{props.description}</Typography>
-            <Typography variant="body2" component="p">Cost: {props.price}</Typography>
-            <Typography variant="body2" component="p">Production Rate: {props.productionRate}</Typography>
+            <Typography variant="body2" component="p">Cost: {currentPrice}</Typography>
+            <Typography variant="body2" component="p">+{props.productionRate} {modifierType}</Typography>
             <Typography variant="body2" component="p">Quantity: {qty}</Typography>
           </div>
           <div className="upgradeActions">
