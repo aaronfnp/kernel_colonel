@@ -5,6 +5,7 @@ function StoreButton(props) {
   const [quantity, setQuantity] = useState(props.quantity);
   const [price, setPrice] = useState(props.price);
   const [usrQty, setUserQty] = useState();
+  const [user, setUser] = useState(props.user);
 
   let modifierType = null;
   // let modifierBuySell = 1;
@@ -58,25 +59,25 @@ function StoreButton(props) {
     }
   }
 
-  const handleBuy = () => {
-    if (props.cornVal >= price) { 
-      props.setCornVal(props.cornVal - price); 
-      setQuantity(prevQuantity => prevQuantity + props.buyModifier);
+//   const handleBuy = () => {
+//     if (props.cornVal >= price) { 
+//       props.setCornVal(props.cornVal - price); 
+//       setQuantity(prevQuantity => prevQuantity + props.buyModifier);
 
-      if (props.isPassive){
-        addPassiveModifier(props.productionRate * props.buyModifier);
-        setPrice(calculatePassivePrice());
-      }
-      else if (!props.isPassive) {
-        addActiveModifier(props.productionRate * props.buyModifier);
-        setPrice(calculateActivePrice());
-      }
+//       if (props.isPassive){
+//         addPassiveModifier(props.productionRate * props.buyModifier);
+//         setPrice(calculatePassivePrice());
+//       }
+//       else if (!props.isPassive) {
+//         addActiveModifier(props.productionRate * props.buyModifier);
+//         setPrice(calculateActivePrice());
+//       }
      
-    } else {
-      alert("Not enough corn!");
-  }
+//     } else {
+//       alert("Not enough corn!");
+//   }
 
-}
+// }
   
     return (
     <div>
