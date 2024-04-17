@@ -3,7 +3,7 @@ import { upgradesIndex } from '../../../../utilities/upgrades-api';
 import StoreButton from '../StoreButtonList/StoreButton/StoreButton'
 import "./StoreButtonList.css"
 
-function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier, buySellModifier}) {
+function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier, buySellModifier, onUpdateUpgradeQuantity}) {
   const [passiveModifier, setPassiveModifier] = useState(0);
   // STARTING VAL BE SAME AS GAMEPAGE VAL FOR CornValMod_Active 
   const [activeModifier, setActiveModifier] = useState(1);
@@ -54,6 +54,7 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
                   name={upgrade.name} 
                   description={upgrade.description} 
                   quantity={upgrade.quantity} 
+                  onUpdateQuantity={(newQuantity) => onUpdateUpgradeQuantity(upgrade._id, newQuantity)}
                   price={upgrade.price} 
                   productionRate={upgrade.productionRate} 
                   isPassive={upgrade.isPassive} 

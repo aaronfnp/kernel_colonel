@@ -36,10 +36,31 @@ export function getToken() {
   return token;
 }
 
+export function updateLocalUser(user) {
+  localStorage.setItem('localUser', JSON.stringify(user));
+}
+
 export function getUser() {
   const token = getToken();
+  // IF USER IS LOGGED IN
+  if (token) {
+    const localUser = localStorage.getItem('localUser');
+
+    // If we have local user, return it
+    if (localUser) {
+      console.log("RETURNING LOCALUSER", localUser)
+        return JSON.parse(localUser);
+    } else {
+      // Otherwise, return user from token
+       const tokenuser = JSON.parse(atob(token.split('.')[1])).user;
+       console.log("TOKEN USER IS", tokenuser)
+       return tokenuser
+    }
+ }
+ // if not logged in, return null
+ else return null
   // If there's a token, return the user in the payload, otherwise return null
-  return token ? JSON.parse(atob(token.split('.')[1])).user : null;
+  // return token ? JSON.parse(atob(token.split('.')[1])).user : null;
 }
 
 export function checkToken() {
