@@ -42,11 +42,8 @@
   
 ### Game Images
 
-![Game Interface](public/game-interface.png "Game Interface Screenshot")
+[![Game Interface](public/game-interface.png)](https://kernelcolonel-363e070e95f0.herokuapp.com/)
 
-![Leaderboard](public/leaderboard.png "Leaderboard Screenshot")
-
-![Leaderboard](public/stats.png "Stats Screenshot")
 
 
 ## Resources
