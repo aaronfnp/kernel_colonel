@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import { upgradesIndex } from '../../../../utilities/upgrades-api';
 import StoreButton from '../StoreButtonList/StoreButton/StoreButton'
 
-function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier}) {
+function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier, quantity, user, setUser}) {
   const [passiveModifier, setPassiveModifier] = useState(0);
   // STARTING VAL BE SAME AS GAMEPAGE VAL FOR CornValMod_Active 
   const [activeModifier, setActiveModifier] = useState(1);
@@ -27,8 +27,14 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
   // TIMER BASED CPS USE EFFECT
   useEffect(() => {
     timerRef.current = setInterval(() => {
-      setCornVal(secs => secs + passiveModifier);
-      setTotalCornVal(secs => secs + passiveModifier);
+      setCornVal(secs => {
+        const newValue = secs + passiveModifier;
+        return parseFloat(newValue.toFixed(2));
+      });
+      setTotalCornVal(secs => {
+        const newValue = secs + passiveModifier;
+        return parseFloat(newValue.toFixed(2));
+      });
     }, 1000);
 
     return () => {
@@ -37,11 +43,17 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
   }, [passiveModifier, setCornVal]);
 
 
+<<<<<<< HEAD
   // ACTIVE (CLICK) MODIFIER FUNCTION USED BY BUTTONS, SETS STATES ON GAMEPAGE
   const addActiveModifier = (modifierValue) => {
     setActiveModifier(prevModifier => prevModifier + modifierValue);
     setClickMod(activeModifier + modifierValue); 
   };
+=======
+
+
+  
+>>>>>>> 56b22d5b0f2078b19b9b376fab2b247d38bb4e7e
 
   // CALLED BY ACTIVE MODIFIER FUNCTION
   const setClickMod = (newScoreModifier) => {
@@ -86,6 +98,8 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
                   setPassiveModifier={setPassiveModifier}
                   setCornValMod_Passive={setCornValMod_Passive}
                   setCornValMod_Active={setCornValMod_Active}
+                  user={user}
+                  setUser={setUser}
                   />
               ))}
         </div>

@@ -4,12 +4,14 @@ import StoreContainer from '../../components/StoreContainer/StoreContainer';
 import './GamePage.css';
 import { updateScore } from '../../utilities/users-api';
 import SplineBackground from './SplineBackground'; // Import the SplineBackground component
+import { updateTypeQueryNode } from 'typescript';
 
 function GamePage({ user, setUser }) {
   const [cornVal, setCornVal] = useState(user.score);
   const [totalCornVal, setTotalCornVal] = useState(user.totalScore);
   const [cornValMod_Passive, setCornValMod_Passive] = useState(0);
   const [cornValMod_Active, setCornValMod_Active] = useState(1);
+  
 
   // Initialize cornVal to the user's score on mount
   useEffect(() => {
@@ -47,7 +49,7 @@ function GamePage({ user, setUser }) {
         console.log(`Updated Score to ${prevCornVal}`);
         return prevCornVal;
       });
-  
+
       setTotalCornVal(prevTotalCornVal => {
         setUser(prevUser => ({
           ...prevUser,
@@ -59,6 +61,10 @@ function GamePage({ user, setUser }) {
     } catch (error) {
       console.error('Error updating score:', error);
     }}
+
+
+    
+    
 
   return (
     <div className='GamePage'>
@@ -84,12 +90,18 @@ function GamePage({ user, setUser }) {
             totalCornVal={totalCornVal}
             setTotalCornVal={setTotalCornVal}
             setCornValMod_Passive={setCornValMod_Passive}
-            setCornValMod_Active={setCornValMod_Active}  />
+            setCornValMod_Active={setCornValMod_Active}
+            user={user}
+            setUser={setUser}
+              />
         </div>
       </div>
-      <button onClick={handleSaveScore}>Save Score</button>
+      <button onClick={[
+        handleSaveScore,
+        ]}>Save</button>
     </div>
   );
 }
+
 
 export default GamePage;

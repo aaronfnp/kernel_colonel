@@ -12,6 +12,7 @@ router.post('/', usersCtrl.create);
 router.post('/login', usersCtrl.login);
 router.put('/:userId/update-score', usersCtrl.updateScore);
 router.put('/:userId/update-info', usersCtrl.updateInfo);
+router.put('/:userId/update-quantity', usersCtrl.updateQuantity);
 
 
 module.exports = router;

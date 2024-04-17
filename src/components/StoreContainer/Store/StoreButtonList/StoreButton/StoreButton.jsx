@@ -1,10 +1,22 @@
+<<<<<<< HEAD
 import React from 'react'
 
 function StoreButton(props) {
+=======
+import React, { useState } from 'react';
+import { updateUserQty } from '../../../../../utilities/users-api';
+
+function StoreButton(props) {
+  const [quantity, setQuantity] = useState(props.quantity);
+  const [price, setPrice] = useState(props.price);
+  const [usrQty, setUserQty] = useState();
+
+>>>>>>> 56b22d5b0f2078b19b9b376fab2b247d38bb4e7e
   let modifierType = null;
-  let modifierBuySell = 1;
+  // let modifierBuySell = 1;
 
     // ADD A VIRTUAL INTO THIS OR MODEL?
+
 
     if (props.isPassive) {
      modifierType = 'Per Second'
@@ -34,9 +46,47 @@ function StoreButton(props) {
   const setCPS = (newScoreModifier) => {
     props.setCornValMod_Passive(newScoreModifier);
   };
+
+  async function handleUserQty() {
+    try {
+      await updateUserQty(user._id, quantity);
+  
+      setUserQty(prevQuantity => {
+        setUser(prevUser => ({
+          ...prevUser,
+          quantity: prevQuantity
+        }));
+        console.log(`Updated quantity to ${prevQuantity}`);
+        return prevQuantity;
+      });
+    } catch (error) {
+      console.error('Error updating quantity:', error);
+    }
+  }
+
+  const handleBuy = () => {
+    if (props.cornVal >= price) { 
+      props.setCornVal(props.cornVal - price); 
+      setQuantity(prevQuantity => prevQuantity + props.buyModifier);
+
+      if (props.isPassive){
+        addPassiveModifier(props.productionRate * props.buyModifier);
+        setPrice(calculatePassivePrice());
+      }
+      else if (!props.isPassive) {
+        addActiveModifier(props.productionRate * props.buyModifier);
+        setPrice(calculateActivePrice());
+      }
+     
+    } else {
+      alert("Not enough corn!");
+  }
+
+}
   
     return (
     <div>
+<<<<<<< HEAD
       <button onClick={() => {
         if (props.cornVal >= (props.price * props.buyModifier)) {
           props.setCornVal(props.cornVal - (props.price * props.buyModifier));
@@ -49,8 +99,12 @@ function StoreButton(props) {
         }
         }}>
           {props.name}
+=======
+     <button onClick={[handleBuy, handleUserQty]}>
+          {props.name} x{quantity}
+>>>>>>> 56b22d5b0f2078b19b9b376fab2b247d38bb4e7e
           <br></br>
-          {props.description}
+          <small>{props.description}</small>
           <br></br>
           +{props.productionRate} {modifierType} | Cost {props.price}
           </button>
@@ -59,3 +113,5 @@ function StoreButton(props) {
 }
 
 export default StoreButton
+
+

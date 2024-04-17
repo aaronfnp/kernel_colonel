@@ -9,7 +9,10 @@ export default function NavBar({user, setUser}) {
   
   return (
     <nav>
+<<<<<<< HEAD
       
+=======
+>>>>>>> 56b22d5b0f2078b19b9b376fab2b247d38bb4e7e
       &nbsp;&nbsp;<span>Welcome, {user.name}</span>
       &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
 
