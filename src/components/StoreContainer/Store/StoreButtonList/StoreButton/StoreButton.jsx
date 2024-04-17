@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react'
 
 function StoreButton(props) {
-  const [quantity, setQuantity] = useState(props.quantity);
-  const [price, setPrice] = useState(props.price);
   let modifierType = null;
   let modifierBuySell = 1;
 
@@ -15,14 +13,6 @@ function StoreButton(props) {
       modifierType = 'On Click'
     }
 
-    const calculatePassivePrice = () => {
-      return Math.ceil(props.price * Math.pow(1.15, quantity + 1));
-    };
-
-    const calculateActivePrice = () => {
-      return Math.ceil(props.price * Math.pow(5, quantity + 1));
-    }
-    
     // ACTIVE (CLICK) MODIFIER FUNCTION USED BY BUTTONS, SETS STATES ON GAMEPAGE
   const addActiveModifier = (modifierValue) => {
     props.setActiveModifier(prevModifier => prevModifier + modifierValue);
@@ -48,27 +38,21 @@ function StoreButton(props) {
     return (
     <div>
       <button onClick={() => {
-        if (props.cornVal >= price) { 
-          props.setCornVal(props.cornVal - price); 
-          setQuantity(prevQuantity => prevQuantity + props.buyModifier);
-          if (props.isPassive){
-            addPassiveModifier(props.productionRate * props.buyModifier);
-            setPrice(calculatePassivePrice());
-          }
-          else if (!props.isPassive) {
-            addActiveModifier(props.productionRate * props.buyModifier);
-            setPrice(calculateActivePrice());
-          }
-         
+        if (props.cornVal >= (props.price * props.buyModifier)) {
+          props.setCornVal(props.cornVal - (props.price * props.buyModifier));
+          if (props.isPassive) addPassiveModifier(props.productionRate * props.buyModifier);
+          else if (!props.isPassive) addActiveModifier(props.productionRate * props.buyModifier);
+          
         } else {
+            // THIS WILL BE CHANGED TO A NON-ALERT
           alert("Not enough corn!");
         }
-      }}>
-          {props.name} x{quantity}
+        }}>
+          {props.name}
           <br></br>
           {props.description}
           <br></br>
-          +{props.productionRate} {modifierType} | Cost {price}
+          +{props.productionRate} {modifierType} | Cost {props.price}
           </button>
     </div>
   )

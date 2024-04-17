@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { Grid, Paper, Box } from '@mui/material';
 import { loadLB } from '../../../../../utilities/users-api';
+
 function DisplayLeaderBoard() {
   const [leaderBoard, setLeaderBoard] = useState([]);
 
@@ -18,16 +19,18 @@ function DisplayLeaderBoard() {
   }, []);
   
   return (
-    <div>
-      <h4>Current Display: LeaderBoard</h4>
-      <div>
+    <Box sx={{ width: '100%' }}>
+      <h4>LeaderBoard</h4>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         {leaderBoard.map((user, idx) => (
-          <>
-            <small key={user.id}>{user.name}: {user.totalScore} </small>
-          </>
+          <Grid item xs={6} key={user.id}>
+            <Paper sx={{ p: 1, textAlign: 'center', color: 'text.secondary', bgcolor: 'background.paper' }}>
+              {idx + 1}. {user.name}: {user.totalScore}
+            </Paper>
+          </Grid>
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 }
 

@@ -38,7 +38,7 @@ function GameInterface({ cornVal, setCornVal, totalCornVal, setTotalCornVal, cor
       
       <div>
         {/* Button for clicking */}
-        <button className="custom-button" onClick={() => { setCornVal(cornVal + cornValMod_Active); setTotalCornVal(totalCornVal + cornValMod_Active); popcornAnimation(); }}>CLICK</button>
+        <button className="custom-button" onClick={() => { setCornVal(cornVal + cornValMod_Active); setTotalCornVal(totalCornVal + cornValMod_Active); popcornAnimation(); }}></button>
       </div>
     </div>
   )
