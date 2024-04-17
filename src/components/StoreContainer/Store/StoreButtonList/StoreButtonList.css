@@ -1,5 +1,3 @@
-/* StoreButtonList.css */
-
 .storeButtonListContainer {
     display: flex;
     flex-direction: column;
@@ -7,8 +5,8 @@
   }
   
   .upgradeCard {
-    width: 750px; /* Adjust card width as needed */
-    height: 150px; /* Set a fixed height for all cards */
+    width: calc(70vh - 70px); /* Set card width to half of viewport height minus 50 pixels */
+    height: calc(25vh - 20px); /* Set card height relative to viewport height */
     margin-bottom: 20px; /* Adjust margin between cards */
   }
   
@@ -34,7 +32,7 @@
   }
   
   .upgradeDetails h2 {
-    font-size: 24px; /* Increase font size for upgrade name */
+    font-size: calc(24px + 0.5vh); /* Increase font size with viewport height */
     margin-bottom: 10px; /* Add space between upgrade name and description */
   }
   
