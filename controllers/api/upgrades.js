@@ -8,3 +8,4 @@ async function index(req, res) {
     const upgrades = await Upgrade.find();
     res.json(upgrades);
 }
+
