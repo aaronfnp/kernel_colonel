@@ -39,6 +39,15 @@
 4. **Enhanced Security**:
    - Secure password hashing with bcrypt.
    - Safe user authentication managed through JWT (JSON Web Tokens).
+  
+### Game Images
+
+![Game Interface](public/game-interface.png "Game Interface Screenshot")
+
+![Leaderboard](public/leaderboard.png "Leaderboard Screenshot")
+
+![Leaderboard](public/stats.png "Stats Screenshot")
+
 
 ## Resources
 
