@@ -1,5 +1,7 @@
+import React from 'react';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import PropTypes from 'prop-types';  // Import PropTypes
 
 function AuthPage({ setUser }) {
   return (
@@ -10,5 +12,9 @@ function AuthPage({ setUser }) {
     </main>
   );
 }
+
+AuthPage.propTypes = {
+  setUser: PropTypes.func.isRequired,
+};
 
 export default AuthPage;

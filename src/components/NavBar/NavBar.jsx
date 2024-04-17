@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
-
+import PropTypes from 'prop-types';
 export default function NavBar({user, setUser}) {
   function handleLogOut() {
     userService.logOut();
@@ -15,3 +15,10 @@ export default function NavBar({user, setUser}) {
     </nav>
   );
 }
+
+NavBar.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  setUser: PropTypes.func.isRequired,
+};

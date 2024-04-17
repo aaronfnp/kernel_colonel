@@ -3,105 +3,55 @@ import GameContainer from '../../components/GameContainer/GameContainer';
 import StoreContainer from '../../components/StoreContainer/StoreContainer';
 import './GamePage.css';
 import { updateScore } from '../../utilities/users-api';
-import SplineBackground from './SplineBackground'; // Import the SplineBackground component
-import { updateTypeQueryNode } from 'typescript';
+import SplineBackground from './SplineBackground';
+import PropTypes from 'prop-types';  // Import PropTypes
 
 function GamePage({ user, setUser }) {
   const [cornVal, setCornVal] = useState(user.score);
   const [totalCornVal, setTotalCornVal] = useState(user.totalScore);
   const [cornValMod_Passive, setCornValMod_Passive] = useState(0);
   const [cornValMod_Active, setCornValMod_Active] = useState(1);
-  
 
-  // Initialize cornVal to the user's score on mount
   useEffect(() => {
-    const initialize = async () => {
-      try {
-        setCornVal(user.score);
-      } catch (error) {
-        console.error('Error initializing:', error);
-      }
-    };
-    initialize();
-
-    // CURRENTLY SAVES EVERY 10 SECS
-    // NEED TO CHANGE TO IF VALUE IS !== 
+    setCornVal(user.score);
     const saveInterval = setInterval(() => {
       handleSaveScore();
     }, 10000);
-
     return () => clearInterval(saveInterval);
+  }, [user.score, handleSaveScore]);  // Corrected dependencies
 
-  }, [user.score]);
-
-  // Function to handle saving score
   async function handleSaveScore() {
-    try {
-      // Update both score and totalScore
-      await updateScore(user._id, cornVal, totalCornVal);
-      
-      // Update local state
-      setCornVal(prevCornVal => {
-        setUser(prevUser => ({
-          ...prevUser,
-          score: prevCornVal
-        }));
-        console.log(`Updated Score to ${prevCornVal}`);
-        return prevCornVal;
-      });
-
-      setTotalCornVal(prevTotalCornVal => {
-        setUser(prevUser => ({
-          ...prevUser,
-          totalScore: prevTotalCornVal
-        }));
-        console.log(`Updated Total Score to ${prevTotalCornVal}`);
-        return prevTotalCornVal;
-      });
-    } catch (error) {
-      console.error('Error updating score:', error);
-    }}
-
-
-    
-    
+    await updateScore(user._id, cornVal, totalCornVal);
+    setCornVal(prev => {
+      setUser({...user, score: prev});
+      return prev;
+    });
+    setTotalCornVal(prev => {
+      setUser({...user, totalScore: prev});
+      return prev;
+    });
+  }
 
   return (
     <div className='GamePage'>
-      <SplineBackground /> {/* Include the SplineBackground component */}
+      <SplineBackground />
       <h1 className='Kernel'>Kernel Colonel</h1>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <div className='gameContainer'>
-          <GameContainer 
-            cornVal={cornVal} 
-            setCornVal={setCornVal} 
-            totalCornVal={totalCornVal}
-            setTotalCornVal={setTotalCornVal}
-            cornValMod_Passive={cornValMod_Passive}
-            cornValMod_Active={cornValMod_Active}
-            user={user}
-            setUser={setUser}
-            />
-        </div>
-        <div className='storeContainer'>
-          <StoreContainer 
-            cornVal={cornVal} 
-            setCornVal={setCornVal}
-            totalCornVal={totalCornVal}
-            setTotalCornVal={setTotalCornVal}
-            setCornValMod_Passive={setCornValMod_Passive}
-            setCornValMod_Active={setCornValMod_Active}
-            user={user}
-            setUser={setUser}
-              />
-        </div>
+        <GameContainer {...{cornVal, setCornVal, totalCornVal, setTotalCornVal, cornValMod_Passive, cornValMod_Active, user, setUser}} />
+        <StoreContainer {...{cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, user, setUser}} />
       </div>
-      <button onClick={[
-        handleSaveScore,
-        ]}>Save</button>
+      <button onClick={handleSaveScore}>Save</button>
     </div>
   );
 }
 
+GamePage.propTypes = {
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    score: PropTypes.number,
+    totalScore: PropTypes.number
+  }).isRequired,
+  setUser: PropTypes.func.isRequired,
+};
 
 export default GamePage;
