@@ -6,7 +6,6 @@ import './GameContainer.css'
 function GameContainer({cornVal, setCornVal, totalCornVal, setTotalCornVal, cornValMod_Passive, cornValMod_Active, user, setUser}) {
   return (
     <div className='GameContainer'>
-      <h1>CLICK ME MAGGOT</h1>
       <GameScreen 
         cornVal={cornVal} 
         setCornVal={setCornVal} 

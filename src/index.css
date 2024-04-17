@@ -158,19 +158,27 @@ button[type="submit"] {
   margin: 5%;
   background-color: rgba(246, 127, 0, 0.8); /* Orange with 80% opacity */
   border-radius: 5%;
-  width: 40%; /* Set container width to 40% of viewport width */
-  height: 80vh; /* Set container height to 80% of viewport height */
+  width: 80%; /* Set container width to 80% of viewport width */
+  max-width: 975px; /* Set maximum width for the container */
+  height: 100vh; /* Set container height to 80% of viewport height */
+  max-height: 1100px; /* Set maximum height for the container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .storeContainer {
   margin: 5%;
   background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
   border-radius: 5%;
-  width: 40%; /* Set container width to 40% of viewport width */
-  height: 80vh; /* Set container height to 80% of viewport height */
+  width: 80%; /* Set container width to 80% of viewport width */
+  max-width: 975px; /* Set maximum width for the container */
+  height: 100vh; /* Set container height to 80% of viewport height */
+  max-height: 1100px; /* Set maximum height for the container */
   overflow-y: auto; /* Enable vertical scroll if content overflows */
   scrollbar-color: #879d1f transparent; /* Adjust scrollbar color */
 }
+
 
 
 

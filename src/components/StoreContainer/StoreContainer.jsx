@@ -4,7 +4,7 @@ import Store from './Store/Store'
 function StoreContainer({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active}) {
   return (
     <div>
-      <h1>StoreContainer</h1>
+      {/* <h1>StoreContainer</h1> */}
       <Store 
       cornVal={cornVal} 
       setCornVal={setCornVal}
