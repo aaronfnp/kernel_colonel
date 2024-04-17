@@ -43,6 +43,8 @@
 ### Game Images
 
 [![Game Interface](public/game-interface.png)](https://kernelcolonel-363e070e95f0.herokuapp.com/)
+[![Game Interface](public/leaderboard.png)](https://kernelcolonel-363e070e95f0.herokuapp.com/)
+[![Game Interface](public/stats.png)](https://kernelcolonel-363e070e95f0.herokuapp.com/)
 
 
 
