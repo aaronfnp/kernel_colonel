@@ -11,19 +11,11 @@ function GamePage({ user, setUser }) {
   const [cornValMod_Passive, setCornValMod_Passive] = useState(0);
   const [cornValMod_Active, setCornValMod_Active] = useState(1);
 
-  // Initialize cornVal to the user's score on mount
   useEffect(() => {
-    const initialize = async () => {
-      try {
-        setCornVal(user.score);
-      } catch (error) {
-        console.error('Error initializing:', error);
-      }
-    };
-    initialize();
-
-    // CURRENTLY SAVES EVERY 10 SECS
-    // NEED TO CHANGE TO IF VALUE IS !== 
+    // Initialize cornVal to the user's score on mount
+    setCornVal(user.score);
+    
+    // Save score every 10 seconds
     const saveInterval = setInterval(() => {
       handleSaveScore();
     }, 10000);
@@ -32,38 +24,25 @@ function GamePage({ user, setUser }) {
 
   }, [user.score]);
 
-  // Function to handle saving score
   async function handleSaveScore() {
     try {
-      // Update both score and totalScore
+      // Update score and totalScore
       await updateScore(user._id, cornVal, totalCornVal);
       
-      // Update local state
-      setCornVal(prevCornVal => {
-        setUser(prevUser => ({
-          ...prevUser,
-          score: prevCornVal
-        }));
-        console.log(`Updated Score to ${prevCornVal}`);
-        return prevCornVal;
-      });
-  
-      setTotalCornVal(prevTotalCornVal => {
-        setUser(prevUser => ({
-          ...prevUser,
-          totalScore: prevTotalCornVal
-        }));
-        console.log(`Updated Total Score to ${prevTotalCornVal}`);
-        return prevTotalCornVal;
-      });
+      // Update user state
+      setUser(prevUser => ({
+        ...prevUser,
+        score: cornVal,
+        totalScore: totalCornVal
+      }));
     } catch (error) {
       console.error('Error updating score:', error);
     }
   }
 
   return (
-    <div className='GamePage' style={{ height: '100vh' }}> {/* Set the height to 100vh */}
-      <SplineBackground /> {/* Include the SplineBackground component */}
+    <div className='GamePage' style={{ height: '100vh' }}>
+      <SplineBackground />
       <h1 className='Kernel'>Kernel Colonel</h1>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div className='gameContainer'>
