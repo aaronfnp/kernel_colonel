@@ -3,7 +3,7 @@ import StoreBar from './StoreBar/StoreBar'
 import StoreButtonList from './StoreButtonList/StoreButtonList'
 import "./Store.css";
 
-function Store({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, onUpdateUpgradeQuantity}) {
+function Store({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, onUpdateUpgradeQuantity, inventory}) {
   const [buyModifier, setBuyModifier] = useState(1);
   const [buySellModifier, setBuySellModifier] = useState(1);
   const [isBuying, setIsBuying] = useState(true);
@@ -38,6 +38,7 @@ function Store({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMo
       buyModifier={buyModifier}
       isBuying={isBuying}
       buySellModifier={buySellModifier}
+      inventory={inventory}
       />
     </div>
   )

@@ -10,10 +10,11 @@ function GamePage({ user, setUser }) {
   const [totalCornVal, setTotalCornVal] = useState(user.totalScore);
   const [cornValMod_Passive, setCornValMod_Passive] = useState(0);
   const [cornValMod_Active, setCornValMod_Active] = useState(1);
+  const [inventory, setInventory] = useState(user.inventory || {});
 
   useEffect(() => {
-    handleSaveScore(cornVal, totalCornVal);
-  }, [cornVal, totalCornVal]);
+    handleSaveScore(cornVal, totalCornVal, inventory);
+  }, [cornVal, totalCornVal, inventory]);
 
   // useEffect(() => {
   //   // Initialize cornVal to the user's score on mount
@@ -29,20 +30,29 @@ function GamePage({ user, setUser }) {
 
   // }, [user.score]);
 
-  async function handleSaveScore(updatedCornVal, updatedTotalCornVal) {
+  async function handleSaveScore(updatedCornVal, updatedTotalCornVal, updatedInventory) {
     try {
-      // Update score and totalScore
+      // Update score and totalScore NEEDS TO UPDATE INVENTORY
       await updateScore(user._id, updatedCornVal, updatedTotalCornVal);
+      console.log("UPDATED INVENTORY", updatedInventory)
       
       // Update user state
       setUser(prevUser => ({
         ...prevUser,
         score: updatedCornVal,
-        totalScore: updatedTotalCornVal
+        totalScore: updatedTotalCornVal,
+        inventory: updatedInventory
       }));
     } catch (error) {
       console.error('Error updating score:', error);
     }
+  }
+
+  function increaseUpgradeQuantity(upgradeID, qty) {
+    setInventory({
+      ...inventory,
+      [upgradeID]: qty
+    }) 
   }
 
   return (
@@ -69,7 +79,9 @@ function GamePage({ user, setUser }) {
             totalCornVal={totalCornVal}
             setTotalCornVal={setTotalCornVal}
             setCornValMod_Passive={setCornValMod_Passive}
-            setCornValMod_Active={setCornValMod_Active}  
+            setCornValMod_Active={setCornValMod_Active} 
+            onUpdateUpgradeQuantity={increaseUpgradeQuantity} 
+            inventory={inventory}
           />
         </div>
       </div>

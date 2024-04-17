@@ -26,6 +26,8 @@ function GameInterface({ cornVal, setCornVal, totalCornVal, setTotalCornVal, cor
     }, 2000); // Change 2000 to adjust the duration of the animation
   }
 
+  console.log("CORNMOD", cornValMod_Passive)
+
   return (
     <div>
       {/* Chips for displaying values */}
