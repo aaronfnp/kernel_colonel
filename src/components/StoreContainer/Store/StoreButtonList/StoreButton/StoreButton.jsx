@@ -1,53 +1,61 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import React from 'react'
 
-function StoreButton({ name, description, quantity, price, productionRate, img, cornVal, setCornVal, buyModifier, setActiveModifier, activeModifier, passiveModifier, setPassiveModifier, setCornValMod_Passive, setCornValMod_Active }) {
+function StoreButton(props) {
+  let modifierType = null;
+  let modifierBuySell = 1;
 
-  const handleBuy = () => {
-    const cost = price * buyModifier;
-    if (cornVal >= cost) {
-      setCornVal(prevCornVal => prevCornVal - cost);
-      const production = productionRate * buyModifier;
-      if (passiveModifier) {
-        setPassiveModifier(prev => prev + production);
-      } else {
-        setCornValMod_Active(prev => prev + production);
-      }
-    } else {
-      alert("Not enough corn!");
+    // ADD A VIRTUAL INTO THIS OR MODEL?
+
+    if (props.isPassive) {
+     modifierType = 'Per Second'
     }
+    else if (!props.isPassive) {
+      modifierType = 'On Click'
+    }
+
+    // ACTIVE (CLICK) MODIFIER FUNCTION USED BY BUTTONS, SETS STATES ON GAMEPAGE
+  const addActiveModifier = (modifierValue) => {
+    props.setActiveModifier(prevModifier => prevModifier + modifierValue);
+    setClickMod(props.activeModifier + modifierValue); 
   };
 
-  return (
-    <Card variant="outlined" className="storeButton">
-      <CardContent style={{ display: 'flex', alignItems: 'center' }}>
-        <div style={{ flex: 1 }}>
-          <img src={img} alt={name} style={{ width: '100px', height: '100px' }} />
-        </div>
-        <div style={{ flex: 2 }}>
-          <Typography variant="h6">{name}</Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {description}
-          </Typography>
-        </div>
-        <div style={{ flex: 1 }}>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Quantity: {quantity}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Price: {price}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Production Rate: {productionRate}
-          </Typography>
-          <Button onClick={handleBuy} disabled={cornVal < price * buyModifier}>Buy</Button>
-        </div>
-      </CardContent>
-    </Card>
-  );
+  // CALLED BY ACTIVE MODIFIER FUNCTION
+  const setClickMod = (newScoreModifier) => {
+    props.setCornValMod_Active(newScoreModifier);
+  };
+
+  // PASSIVE MODIFIER FUNCTION USED BY BUTTONS, SETS STATES ON GAMEPAGE
+  const addPassiveModifier = (modifierValue) => {
+    props.setPassiveModifier(prevModifier => prevModifier + modifierValue);
+    setCPS(props.passiveModifier + modifierValue); 
+  };
+
+  // CALLED BY PASSIVE MODIFIER FUNCTION
+  const setCPS = (newScoreModifier) => {
+    props.setCornValMod_Passive(newScoreModifier);
+  };
+  
+    return (
+    <div>
+      <button onClick={() => {
+        if (props.cornVal >= (props.price * props.buyModifier)) {
+          props.setCornVal(props.cornVal - (props.price * props.buyModifier));
+          if (props.isPassive) addPassiveModifier(props.productionRate * props.buyModifier);
+          else if (!props.isPassive) addActiveModifier(props.productionRate * props.buyModifier);
+          
+        } else {
+            // THIS WILL BE CHANGED TO A NON-ALERT
+          alert("Not enough corn!");
+        }
+        }}>
+          {props.name}
+          <br></br>
+          {props.description}
+          <br></br>
+          +{props.productionRate} {modifierType} | Cost {props.price}
+          </button>
+    </div>
+  )
 }
 
-export default StoreButton;
+export default StoreButton
