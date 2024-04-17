@@ -1,17 +1,13 @@
+import React from 'react';
+import './StoreButton.css';
 import React, { useState } from 'react';
 import { updateUserQty } from '../../../../../utilities/users-api';
 
 function StoreButton(props) {
-  const [quantity, setQuantity] = useState(props.quantity);
-  const [price, setPrice] = useState(props.price);
-  const [usrQty, setUserQty] = useState();
-  const [user, setUser] = useState(props.user);
-
   let modifierType = null;
-  // let modifierBuySell = 1;
+  let modifierBuySell = 1;
 
     // ADD A VIRTUAL INTO THIS OR MODEL?
-
 
     if (props.isPassive) {
      modifierType = 'Per Second'
@@ -26,18 +22,15 @@ function StoreButton(props) {
     setClickMod(props.activeModifier + modifierValue); 
   };
 
-  // CALLED BY ACTIVE MODIFIER FUNCTION
   const setClickMod = (newScoreModifier) => {
     props.setCornValMod_Active(newScoreModifier);
   };
-  
-  // PASSIVE MODIFIER FUNCTION USED BY BUTTONS, SETS STATES ON GAMEPAGE
+
   const addPassiveModifier = (modifierValue) => {
     props.setPassiveModifier(prevModifier => prevModifier + modifierValue);
     setCPS(props.passiveModifier + modifierValue); 
   };
 
-  // CALLED BY PASSIVE MODIFIER FUNCTION
   const setCPS = (newScoreModifier) => {
     props.setCornValMod_Passive(newScoreModifier);
   };
@@ -79,19 +72,25 @@ function StoreButton(props) {
 
 // }
   
-    return (
-    <div>
-     <button onClick={[handleBuy, handleUserQty]}>
-          {props.name} x{quantity}
-          <br></br>
-          <small>{props.description}</small>
-          <br></br>
-          +{props.productionRate} {modifierType} | Cost {props.price}
-          </button>
+  return (
+    <div className="storeButton">
+      <button onClick={() => {
+        if (props.cornVal >= props.price * props.buyModifier) {
+          props.setCornVal(props.cornVal - props.price * props.buyModifier);
+          if (props.isPassive) addPassiveModifier(props.productionRate * props.buyModifier);
+          else addActiveModifier(props.productionRate * props.buyModifier);
+        } else {
+          alert("Not enough corn!");
+        }
+      }}>
+        {props.name}
+        <br />
+        {props.description}
+        <br />
+        +{props.productionRate} {modifierType} | Cost {props.price}
+      </button>
     </div>
-  )
+  );
 }
 
-export default StoreButton
-
-
+export default StoreButton;

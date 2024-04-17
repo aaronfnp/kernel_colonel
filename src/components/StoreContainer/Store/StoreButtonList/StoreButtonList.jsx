@@ -1,15 +1,18 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { upgradesIndex } from '../../../../utilities/upgrades-api';
-import StoreButton from '../StoreButtonList/StoreButton/StoreButton'
+import StoreButton from '../StoreButtonList/StoreButton/StoreButton';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button'; // Import Button from MUI
+import './StoreButtonList.css';
 
-function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier, quantity, user, setUser}) {
+function StoreButtonList({ cornVal, setCornVal, totalCornVal, setTotalCornVal, setCornValMod_Passive, setCornValMod_Active, isBuying, buyModifier, quantity, user, setUser }) {
   const [passiveModifier, setPassiveModifier] = useState(0);
-  // STARTING VAL BE SAME AS GAMEPAGE VAL FOR CornValMod_Active 
   const [activeModifier, setActiveModifier] = useState(1);
   const [upgradesList, setUpgradesList] = useState([]);
   const timerRef = useRef();
 
-  // FETCHING ALL OF THE CURRENT UPGRADES
   useEffect(() => {
     const fetchUpgrades = async () => {
       try {
@@ -21,10 +24,8 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
     };
 
     fetchUpgrades();
-
   }, []);
-  
-  // TIMER BASED CPS USE EFFECT
+
   useEffect(() => {
     timerRef.current = setInterval(() => {
       setCornVal(secs => {
@@ -42,34 +43,23 @@ function StoreButtonList({cornVal, setCornVal, totalCornVal, setTotalCornVal, se
     };
   }, [passiveModifier, setCornVal]);
 
-
-
-
-  
-
-  // CALLED BY ACTIVE MODIFIER FUNCTION
-  const setClickMod = (newScoreModifier) => {
-    setCornValMod_Active(newScoreModifier);
+  const handleBuy = (upgrade) => {
+    if (cornVal >= upgrade.price * buyModifier) {
+      setCornVal(cornVal - upgrade.price * buyModifier);
+      if (upgrade.isPassive) {
+        setCornValMod_Passive(prevModifier => prevModifier + upgrade.productionRate * buyModifier);
+      } else {
+        setCornValMod_Active(prevModifier => prevModifier + upgrade.productionRate * buyModifier);
+      }
+    } else {
+      alert('Not enough corn!');
+    }
   };
 
-  // PASSIVE MODIFIER FUNCTION USED BY BUTTONS, SETS STATES ON GAMEPAGE
-  const addPassiveModifier = (modifierValue) => {
-    setPassiveModifier(prevModifier => prevModifier + modifierValue);
-    setCPS(passiveModifier + modifierValue); 
-  };
-
-  // CALLED BY PASSIVE MODIFIER FUNCTION
-  const setCPS = (newScoreModifier) => {
-    setCornValMod_Passive(newScoreModifier);
-  };
-  
   return (
-
-    // WILL CHANGE THIS TO AN ARRAY OF UPGRADES, INTO A StoreButton COMPONENT
-    <div>
+    <div className="storeButtonList">
       <h3>StoreButtonList</h3>
-      {/* CPS BUTTONS */}
-      <div>
+      <div className="storeButtonListContainer">
         {upgradesList.map((upgrade, idx) => (
                   <StoreButton 
                   key={idx} 
