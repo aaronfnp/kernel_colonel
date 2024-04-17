@@ -58,10 +58,11 @@ function GamePage({ user, setUser }) {
       });
     } catch (error) {
       console.error('Error updating score:', error);
-    }}
+    }
+  }
 
   return (
-    <div className='GamePage'>
+    <div className='GamePage' style={{ height: '100vh' }}> {/* Set the height to 100vh */}
       <SplineBackground /> {/* Include the SplineBackground component */}
       <h1 className='Kernel'>Kernel Colonel</h1>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -75,7 +76,7 @@ function GamePage({ user, setUser }) {
             cornValMod_Active={cornValMod_Active}
             user={user}
             setUser={setUser}
-            />
+          />
         </div>
         <div className='storeContainer'>
           <StoreContainer 
@@ -84,7 +85,8 @@ function GamePage({ user, setUser }) {
             totalCornVal={totalCornVal}
             setTotalCornVal={setTotalCornVal}
             setCornValMod_Passive={setCornValMod_Passive}
-            setCornValMod_Active={setCornValMod_Active}  />
+            setCornValMod_Active={setCornValMod_Active}  
+          />
         </div>
       </div>
       <button onClick={handleSaveScore}>Save Score</button>
