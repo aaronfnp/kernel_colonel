@@ -33,7 +33,7 @@ function StoreButton(props) {
   const setClickMod = (newScoreModifier) => {
     props.setCornValMod_Active(newScoreModifier);
   };
-
+  
   // PASSIVE MODIFIER FUNCTION USED BY BUTTONS, SETS STATES ON GAMEPAGE
   const addPassiveModifier = (modifierValue) => {
     props.setPassiveModifier(prevModifier => prevModifier + modifierValue);
